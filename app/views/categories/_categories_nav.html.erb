@@ -6,7 +6,7 @@
   <% categories.each_with_index do |root| %>
     <!-- Show root categories -->
     <li style="display:block-inline" value="root" class="<%= "cat-#{root.id}"%>" >
-      <i class="fa fa-caret-right" onclick="getSubCategories(<%= root.id %>)"></i>
+      <i class="fa fa-caret-right fa-lg" onclick="getSubCategories(<%= root.id %>)"></i>
       <b> <%= link_to root.name, category_path(root, view_style: "grid") %> </b>
     </li>
     <br />

@@ -5,12 +5,12 @@ class Group < ActiveRecord::Base
   has_many :categories
 
   def leaders
-    memberships = Membership.where(group_id: id, level: Membership::LEVELS[:leader])
+    memberships = Membership.leader
     memberships.to_a.map! {|member| member.user}
   end
 
   def members
-    regular_members = Membership.where(group_id: id, level: Membership::LEVELS[:regular])
+    regular_members = Membership.regular_member
     regular_members.to_a.map! {|member| member.user}
   end
 

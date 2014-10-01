@@ -26,7 +26,4 @@
     <%= render partial: "documents/documents_view_style" %>
   </div>
   <h4 style="display: inline-block"> <%= "Documents for #{@category.name}" %> </h4> 
-  <% if !@category.group.nil? %>
-    <h6 style="display: inline-block"> <%= " - managed by " %> <%= link_to @category.group.name, @category.group %> </h6>
-  <% end %>
 </div>
