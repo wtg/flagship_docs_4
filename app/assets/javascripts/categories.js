@@ -17,10 +17,10 @@ function showCategory(cat_class) {
 }
 
 function toggleCategoryIcon(root_class) {
-  if ($(root_class + " > i").attr("class") == "fa fa-caret-right") {
-    $(root_class + " > i").attr("class", "fa fa-caret-down");
+  if ($(root_class + " > i").attr("class") == "fa fa-caret-right fa-lg") {
+    $(root_class + " > i").attr("class", "fa fa-caret-down fa-lg");
   } else {
-    $(root_class + " > i").attr("class", "fa fa-caret-right");
+    $(root_class + " > i").attr("class", "fa fa-caret-right fa-lg");
   }
 }
 
@@ -43,7 +43,7 @@ function getSubCategories(category_id) {
       if (!$(cat_class).length) {
         $(root_class).append(
           "<li value='shown' style='display:block-inline; margin-left:"+depth+"px;' class='cat-"+id+"'> \
-            <i class='fa fa-caret-right' onclick='getSubCategories("+id+")'></i> \
+            <i class='fa fa-caret-right fa-lg' onclick='getSubCategories("+id+")'></i> \
             <a href='/categories/"+id+"'>"+subcategories[i].name+"</a> \
           </li>"
         );

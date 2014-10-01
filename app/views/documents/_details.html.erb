@@ -8,7 +8,8 @@
       <%= image_tag "icons/#{document_icon(@document.current_revision.extension_type)}" %>
       <h4> Download the latest revision here </h4>
     <% end %>
-    <%= "From #{@document.user.username} on #{@document.current_revision.updated_at.to_date}" %>
+    <%= "From #{@document.user.username}" if !@document.user.nil? %> 
+    <%= "on #{@document.current_revision.updated_at.to_date}" %>
     <br />
     <%= "Download count: #{@document.total_downloads}" %>
     <br />
@@ -36,7 +37,8 @@
                       <%= image_tag "icons/#{small_document_icon(revision.extension_type)}" %>
                       <%= "Revision #{revision.position}" %> 
                       <span class="pull-right">
-                        <%= "by #{User.find(revision.user_id).full_name} on #{revision.updated_at.to_date}" %>
+                        <%= "by #{User.find(revision.user_id).full_name}" if !User.find(revision.user_id).nil? %>
+                        <%= "on #{revision.updated_at.to_date}" %>
                       </span>
                     </p>
                   </div>

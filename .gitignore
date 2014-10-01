@@ -15,5 +15,5 @@
 /log/*.log
 /tmp
 
-#
+# Ignore solr files
 /solr/*

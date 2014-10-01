@@ -1,0 +1,22 @@
+<tr>
+  <td> <%= cat.name %> </td>
+  <td> 
+    <% if !cat.group.nil? %>
+      <%= link_to cat.group.name, group_path(cat.group) %> 
+    <% else %>
+      None
+    <% end %>
+  </td>
+  <td> 
+    <% if cat.parent %>
+      <%= link_to cat.parent.name, cat.parent %> 
+    <% else %>
+      None 
+    <% end %>
+  </td>
+  <td> <%= cat.is_featured? ? "yes" : "no" %> </td>
+  <td> <%= cat.is_private? ? "yes" : "no" %> </td>
+  <td> <%= link_to "Edit", edit_category_path(cat), :class => "btn btn-primary btn-xs" %> 
+       <%= link_to "Delete", category_path(cat), method: :delete, :class => "btn btn-primary btn-xs" %> 
+  </td>
+</tr>

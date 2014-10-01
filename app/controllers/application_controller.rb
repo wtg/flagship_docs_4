@@ -13,4 +13,4 @@ class ApplicationController < ActionController::Base
     @permitted_categories = upload_permitted_categories
   end
 
-end
+end 

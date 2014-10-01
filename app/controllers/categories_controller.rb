@@ -80,7 +80,7 @@ class CategoriesController < ApplicationController
   end
 
   def manage
-    @categories = Category.all
+    @categories = Category.all.order("name asc")
   end
 
   def subcategories
