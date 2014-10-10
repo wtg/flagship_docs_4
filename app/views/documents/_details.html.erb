@@ -4,9 +4,16 @@
     <h3> <%= @document.title %> </h3>
     <p> <%= @document.description %> </p>
     <br />
-    <%= link_to download_document_path, "data-no-turbolink" => true do %>
-      <%= image_tag "icons/#{document_icon(@document.current_revision.extension_type)}" %>
-      <h4> Download the latest revision here </h4>
+    <% if @document.current_revision.file_upload? %>
+      <%= link_to download_document_path, "data-no-turbolink" => true do %>
+        <%= image_tag "icons/#{document_icon(@document.current_revision.extension_type)}" %>
+        <h4> Download the latest revision here </h4>
+      <% end %>
+    <% else %>
+      <%= link_to @document.current_revision.doc_link do %>
+        <%= image_tag "icons/icon_doc.png" %>
+        <h4> Download the latest revision here </h4>
+      <% end %>
     <% end %>
     <%= "From #{@document.user.username}" if !@document.user.nil? %> 
     <%= "on #{@document.current_revision.updated_at.to_date}" %>

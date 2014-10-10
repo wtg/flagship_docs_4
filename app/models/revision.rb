@@ -3,7 +3,16 @@ class Revision < ActiveRecord::Base
   belongs_to :document
   belongs_to :user
 
-  validates_presence_of :file_name, :file_type, :file_data
+  validates_presence_of :file_name, :file_type, :file_data, :if => :file_upload?
+  validates_presence_of :doc_link, :if => :external_link?
+
+  def file_upload?
+    !file_data.nil?
+  end
+
+  def external_link?
+    !doc_link.nil?
+  end
 
   def extension_type
     ext = case file_type
@@ -35,6 +44,25 @@ class Revision < ActiveRecord::Base
     contents.gsub!(/\P{ASCII}/, '') if !contents.blank?
     # Redundant line breaks are useless to us
     self.search_text = contents.gsub(/(\r?\n)+/,"\n") if !contents.blank?
+  end
+
+
+  def self.create_using_upload(revision_params, document, user)
+    revision = Revision.new(file_name: revision_params.original_filename,
+      file_type: revision_params.content_type,
+      file_data: revision_params.read,
+      document_id: document.id,
+      user_id: user.id,
+      position: 0
+    )
+  end
+
+  def self.create_using_link(revision_params, document, user)
+    revision = Revision.new(doc_link: revision_params,
+      document_id: document.id,
+      user_id: user.id,
+      position: 0
+    )
   end
 
 end

@@ -35,11 +35,12 @@ class DocumentsController < ApplicationController
       send_data(@document.file_data, :type => @document.file_type, :filename => @document.file_name, :disposition => "inline")
     else
       flash[:error] = "Could not find requested document"
-      redirect_to root_path
+      link_to root_path
     end
   end
 
   def create
+
     if !revision_params.nil?
       # Create our new document
       @document = Document.new(document_params)
@@ -49,20 +50,22 @@ class DocumentsController < ApplicationController
       if !@document.save
         flash[:error] = "Unable to upload document"
       else
-        # Create the initial revision of the new document
-        @revision = Revision.new(file_name: revision_params.original_filename,
-            file_type: revision_params.content_type,
-            file_data: revision_params.read,
-            document_id: @document.id,
-            user_id: current_user.id,
-            position: 0
-          )
+        # Create the initial revision of the new document 
+        #  either via file upload or external link
+        if revision_params.is_a?(Hash)
+          @revision = Revision.create_using_upload(revision_params, @document, current_user)
+          extract_text = true
+        else  
+          @revision = Revision.create_using_link(revision_params, @document, current_user)
+          extract_text = false
+        end
+
         if !@revision.save
           @document.destroy
           flash[:error] = "Unable to upload revision"
         else
           # Extract text from file to provide search engine with searchable content
-          @revision.extract_text
+          @revision.extract_text if extract_text
           @revision.save
         end
       end
@@ -106,6 +109,12 @@ class DocumentsController < ApplicationController
     end
 
     def revision_params
-      params[:document][:revision][:file] if !params[:document][:revision].blank?
+      if !params[:document][:revision].blank? 
+        if !params[:document][:revision][:file].blank?
+          params[:document][:revision][:file] 
+        else
+          params[:document][:revision][:doc_link]
+        end
+      end
     end
 end
