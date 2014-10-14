@@ -31,8 +31,14 @@ class DocumentsController < ApplicationController
       @document = @document.current_revision
       # Increment download count
       @document.increment!(:download_count)
-      # Send file binary data to user's browser
-      send_data(@document.file_data, :type => @document.file_type, :filename => @document.file_name, :disposition => "inline")
+
+      if @document.file_upload?
+        # Send file binary data to user's browser
+        send_data(@document.file_data, :type => @document.file_type, :filename => @document.file_name, :disposition => "inline")
+      elsif @document.external_link?
+        # Redirect to external document
+        redirect_to @document.doc_link
+      end
     else
       flash[:error] = "Could not find requested document"
       link_to root_path
@@ -55,7 +61,7 @@ class DocumentsController < ApplicationController
         if revision_params.is_a?(Hash)
           @revision = Revision.create_using_upload(revision_params, @document, current_user)
           extract_text = true
-        else  
+        elsif revision_params.is_a?(String)
           @revision = Revision.create_using_link(revision_params, @document, current_user)
           extract_text = false
         end
@@ -109,12 +115,7 @@ class DocumentsController < ApplicationController
     end
 
     def revision_params
-      if !params[:document][:revision].blank? 
-        if !params[:document][:revision][:file].blank?
-          params[:document][:revision][:file] 
-        else
-          params[:document][:revision][:doc_link]
-        end
-      end
+        return params[:document][:revision][:file] if !params[:document][:revision][:file].blank?
+        return params[:document][:revision][:doc_link] if params[:document][:revision][:file].blank?
     end
 end

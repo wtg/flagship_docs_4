@@ -1,18 +1,17 @@
-<%= link_to "<< back", category_path(Category.find(@document.category_id)) %>
+<%= link_to category_path(Category.find(@document.category_id)), :class => "btn btn-default btn-xs" do %>
+  <i class="fa fa-angle-double-left fa-lg"></i> back
+<% end %>
 <div class="row">
   <div class="col-md-4">
     <h3> <%= @document.title %> </h3>
     <p> <%= @document.description %> </p>
     <br />
-    <% if @document.current_revision.file_upload? %>
-      <%= link_to download_document_path, "data-no-turbolink" => true do %>
-        <%= image_tag "icons/#{document_icon(@document.current_revision.extension_type)}" %>
+    <%= link_to download_document_path, "data-no-turbolink" => true do %>
+      <%= image_tag "icons/#{document_icon(@document.current_revision.extension_type)}" %>
+      <% if @document.current_revision.file_upload? %> 
         <h4> Download the latest revision here </h4>
-      <% end %>
-    <% else %>
-      <%= link_to @document.current_revision.doc_link do %>
-        <%= image_tag "icons/icon_doc.png" %>
-        <h4> Download the latest revision here </h4>
+      <% elsif @document.current_revision.external_link? %>
+        <h4> Document from: <%= @document.current_revision.doc_link.truncate(35) %> </h4>
       <% end %>
     <% end %>
     <%= "From #{@document.user.username}" if !@document.user.nil? %> 

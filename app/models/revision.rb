@@ -3,7 +3,10 @@ class Revision < ActiveRecord::Base
   belongs_to :document
   belongs_to :user
 
-  validates_presence_of :file_name, :file_type, :file_data, :if => :file_upload?
+  validates_presence_of :file_type
+  # only validate file name and data if this is a file upload
+  validates_presence_of :file_name, :file_data, :if => :file_upload?
+  # only validate doc link if document is an external link
   validates_presence_of :doc_link, :if => :external_link?
 
   def file_upload?
@@ -20,6 +23,7 @@ class Revision < ActiveRecord::Base
       when "application/pdf" then "pdf"
       when "application/msword" then "doc"
       when "application/vnd.oasis.opendocument.text" then "odt"
+      when "external_link" then "doc"
       else "other"
     end
     ext
@@ -48,6 +52,7 @@ class Revision < ActiveRecord::Base
 
 
   def self.create_using_upload(revision_params, document, user)
+    # Create first revision using a file upload
     revision = Revision.new(file_name: revision_params.original_filename,
       file_type: revision_params.content_type,
       file_data: revision_params.read,
@@ -58,7 +63,9 @@ class Revision < ActiveRecord::Base
   end
 
   def self.create_using_link(revision_params, document, user)
+    # Create first revision using an external link to a document
     revision = Revision.new(doc_link: revision_params,
+      file_type: "external_link",
       document_id: document.id,
       user_id: user.id,
       position: 0

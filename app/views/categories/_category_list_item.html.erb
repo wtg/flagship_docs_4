@@ -1,0 +1,8 @@
+<div class="unstyled_link">
+  <%= link_to category_path(subcategory, view_style:"list") do %>
+    <div class="document_listitem_hover">
+      <%= image_tag "icons/icon_folder_50.png" %>
+      <b><%= subcategory.name %></b>
+    </div>
+  <% end %>
+</div>

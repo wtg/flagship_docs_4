@@ -1,10 +1,25 @@
-<div>
-  <% if @documents %>
-    <%= paginate @documents %>
-    <% @documents.each do |doc| %>
-      <% if !doc.current_revision.nil? %>
-        <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
+<div class="panel panel-default">
+  <div class="breadcrumb">
+    <div class="pull-right" style="padding:20px">
+      <%= render partial: "documents/documents_view_style" %>
+    </div>
+    <h3 style="display: inline-block"> 
+      <%= @category.name %>
+    </h3> 
+  </div>
+  <div class="panel-body">
+    <% if @subcategories %>
+      <% @subcategories.each do |subcategory| %>
+        <%= render partial: "categories/category_list_item", locals: {subcategory: subcategory} %>
       <% end %>
     <% end %>
-  <% end %>
+    <% if @documents %>
+      <%= paginate @documents %>
+      <% @documents.each do |doc| %>
+        <% if !doc.current_revision.nil? %>
+          <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
