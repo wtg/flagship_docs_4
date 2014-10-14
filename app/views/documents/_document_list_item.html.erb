@@ -3,7 +3,7 @@
     <%= link_to doc do %>
       <div class="document_listitem_hover">
         <%= image_tag "icons/#{small_document_icon(doc.current_revision.extension_type)}" %>
-        <b> <%= "#{doc.title}" %> </b> <%= " - #{doc.description.truncate(100)}" %>
+        <b> <%= "#{doc.title.truncate(16)}" %> </b> <%= " - #{doc.description.truncate(100)}" %>
         <div class="pull-right">
           <%= "Date: #{doc.current_revision.updated_at.to_date}" %>
         </div>

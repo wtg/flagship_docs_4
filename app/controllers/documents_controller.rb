@@ -58,7 +58,7 @@ class DocumentsController < ApplicationController
       else
         # Create the initial revision of the new document 
         #  either via file upload or external link
-        if revision_params.is_a?(Hash)
+        if revision_params.is_a?(ActionDispatch::Http::UploadedFile)
           @revision = Revision.create_using_upload(revision_params, @document, current_user)
           extract_text = true
         elsif revision_params.is_a?(String)
@@ -66,10 +66,10 @@ class DocumentsController < ApplicationController
           extract_text = false
         end
 
-        if !@revision.save
+        if !@revision.nil? and !@revision.save
           @document.destroy
           flash[:error] = "Unable to upload revision"
-        else
+        elsif !@revision.nil?
           # Extract text from file to provide search engine with searchable content
           @revision.extract_text if extract_text
           @revision.save

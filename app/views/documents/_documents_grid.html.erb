@@ -9,6 +9,7 @@
   </div>
   <div class="panel-body">
     <div class="categories_grid">
+      <div style="margin-left: 26px"> <%= paginate @documents %> </div>
       <!-- Show a tile for each subcategory -->
       <% if @subcategories %>
         <% @subcategories.each do |subcategory| %>
@@ -17,7 +18,6 @@
       <% end %>
       <!-- Show a tile for each document -->
       <% if @documents %>
-        <%= paginate @documents %>
         <% @documents.each do |doc| %>
           <% if !doc.current_revision.nil? %>
             <%= render partial: "documents/document_tile", locals: { doc: doc } %>

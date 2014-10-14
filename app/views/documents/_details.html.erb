@@ -3,8 +3,8 @@
 <% end %>
 <div class="row">
   <div class="col-md-4">
-    <h3> <%= @document.title %> </h3>
-    <p> <%= @document.description %> </p>
+    <h3> <%= @document.title.truncate(30) %> </h3>
+    <p> <%= @document.description.truncate(250) %> </p>
     <br />
     <%= link_to download_document_path, "data-no-turbolink" => true do %>
       <%= image_tag "icons/#{document_icon(@document.current_revision.extension_type)}" %>

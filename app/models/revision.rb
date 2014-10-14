@@ -39,7 +39,7 @@ class Revision < ActiveRecord::Base
     begin
       contents = Textractor.text_from_path(tempfile.path, :content_type => file_type)
     rescue
-      logger.error("Unable to extract text from file. Revision id = #{id}, File name = #{filename}")
+      logger.error("Unable to extract text from file. Revision id = #{id}, File name = #{file_name}")
       contents = nil
     end
     tempfile.unlink
