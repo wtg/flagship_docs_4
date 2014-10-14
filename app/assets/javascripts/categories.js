@@ -44,7 +44,7 @@ function getSubCategories(category_id) {
         $(root_class).append(
           "<li value='shown' style='display:block-inline; margin-left:"+depth+"px;' class='cat-"+id+"'> \
             <i class='fa fa-caret-right fa-lg' onclick='getSubCategories("+id+")'></i> \
-            <a href='/categories/"+id+"'>"+subcategories[i].name+"</a> \
+            <a href='/categories/"+id+"' onclick='storeCategoryTree();' data-no-turbolink='true'>"+subcategories[i].name+"</a> \
           </li>"
         );
       } else if (isCategoryLoaded(cat_class)) {

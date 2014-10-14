@@ -8,13 +8,15 @@
     </h3> 
   </div>
   <div class="panel-body">
+    <div style="margin-left: 26px"> <%= paginate @documents %> </div>
     <% if @subcategories %>
+      <!-- Show a tile for each subcategory -->
       <% @subcategories.each do |subcategory| %>
         <%= render partial: "categories/category_list_item", locals: {subcategory: subcategory} %>
       <% end %>
     <% end %>
     <% if @documents %>
-      <%= paginate @documents %>
+      <!-- Show a tile for each document -->
       <% @documents.each do |doc| %>
         <% if !doc.current_revision.nil? %>
           <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
