@@ -1,0 +1,13 @@
+<% if category_viewable?(subcategory) %>
+  <div class="unstyled_link">
+    <div class="document_tile">
+      <%= link_to category_path(subcategory, view_style: "grid") do %>
+        <div class="doc_tile_hover">
+          <%= image_tag "icons/icon_folder.png" %>
+          <br />
+          <%= subcategory.name %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

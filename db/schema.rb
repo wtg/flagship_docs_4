@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140713005035) do
+ActiveRecord::Schema.define(version: 20141009171839) do
 
   create_table "categories", force: true do |t|
     t.datetime "created_at"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140713005035) do
     t.boolean  "is_writable", default: false
     t.integer  "parent_id"
     t.integer  "group_id"
-    t.boolean  "is_featured", default: false
+    t.boolean  "is_featured"
   end
 
   create_table "documents", force: true do |t|
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20140713005035) do
     t.integer  "file_size"
     t.binary   "file_data",      limit: 4194304
     t.text     "search_text"
+    t.string   "doc_link"
   end
 
   create_table "users", force: true do |t|

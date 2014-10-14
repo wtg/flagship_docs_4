@@ -6,7 +6,6 @@
     remote:        data-remote
     paginator:     the paginator that renders the pagination tags inside
 -%>
-<div class="row">
   <%= paginator.render do -%>
     <nav class="pagination nav nav-tabs">
       <%= first_page_tag unless current_page.first? %>
@@ -22,8 +21,3 @@
       <%= last_page_tag unless current_page.last? %>
     </nav>
   <% end -%>
-  <div class="pull-right" style="padding:20px">
-    <%= render partial: "documents/documents_view_style" %>
-  </div>
-  <h4 style="display: inline-block"> <%= "Documents for #{@category.name}" %> </h4> 
-</div>
