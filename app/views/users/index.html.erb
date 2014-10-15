@@ -12,6 +12,7 @@
         <th> Admin Status </th> 
         <th> Actions </th>
       </tr>
+      <div style="margin-left: 26px"><%= paginate @users %></div>
       <% @users.each do |user| %>
       <tr>
         <td> <%= link_to user.username, user %> </td>

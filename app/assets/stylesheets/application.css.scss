@@ -15,11 +15,11 @@
  *= require_self
  */
 
-// $btn-default-bg: #CC0000;
 $btn-default-bg: #708EA4;
 $btn-default-color: #FFFFFF;
 
-// $input-border-focus: #CC0000;
+$btn-danger-color: #FFFFFF;
+
 
 @import "bootstrap";
 @import "bootstrap/theme";
@@ -39,6 +39,11 @@ body {
 
 .btn-default {
   border-radius: 0px;
+}
+
+.btn-danger {
+  border-radius: 0px;
+  border-color: #CCCCCC;
 }
 
 .breadcrumb {

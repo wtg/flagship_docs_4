@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :admin?, except: [:show]
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page])
   end
 
   def show
@@ -15,6 +15,10 @@ class UsersController < ApplicationController
       @user.destroy
     end
     redirect_to users_path
+  end
+
+  def manage_groups 
+    
   end
 
   def admin_status

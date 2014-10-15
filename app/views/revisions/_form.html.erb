@@ -3,9 +3,7 @@
 	  <p> <b>Document:</b> <%= @document.title %> </p>
 		<p> <b>Description:</b> <%= @document.description %> </p>
 		<p> <b>Category:</b> <%= @document.category.name %> </p>
-		<% if uploader = User.find(@document.user_id).full_name %>
-			<p> <b>Uploaded by:</b> <%= uploader %> </p>
-		<% end %>
+		<p> <b>Uploaded by:</b> <%= current_user.full_name %> </p>
 
 	  <%= f.file_field :file %>
 	  <br />
