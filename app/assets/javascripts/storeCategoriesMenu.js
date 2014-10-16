@@ -45,7 +45,9 @@ function loadCategoryTree() {
         getSubCategories(root);
         for (x in categories[root]) {
           console.log(categories[root][x]);
-          getSubCategories(categories[root][x]);
+          if (x < categories[root].length - 1) {
+            getSubCategories(categories[root][x]);
+          }
         }
       }
     }

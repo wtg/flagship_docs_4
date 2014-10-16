@@ -34,9 +34,26 @@ class GroupsController < ApplicationController
   end
 
   def add_member
-    leader = Membership.new(leader_params)
-    leader.group_id = params[:id]
-    leader.save
+    # return existing membership
+    member = Membership.where(
+        user_id: membership_params[:user_id],
+        group_id: params[:id]
+      ).first
+
+    if !member.nil?
+      # edit existing membership with new level
+      member.update_attributes(level: membership_params[:level])
+    else
+      # create new membership 
+      member = Membership.new(membership_params)
+      member.group_id = params[:id]
+    end
+
+    if member.save
+      flash[:success] = "New member added"
+    else
+      flash[:error] = "Member already exists or could not be saved"
+    end
 
     redirect_to edit_group_path(params[:id])
   end
@@ -52,7 +69,7 @@ class GroupsController < ApplicationController
       params.require(:group).permit(:name)
     end
 
-    def leader_params
+    def membership_params
       params.require(:membership).permit(:user_id, :level)
     end
 

@@ -4,13 +4,23 @@ class Group < ActiveRecord::Base
   has_many :users, through: :memberships
   has_many :categories
 
+  def is_member?(user_id)
+    return true if !memberships.find_by(group_id: id, user_id: user_id, level: 1).nil?
+    return false
+  end
+
+  def is_leader?(user_id)
+    return true if !memberships.find_by(group_id: id, user_id: user_id, level: 9).nil?
+    return false
+  end
+
   def leaders
-    memberships = Membership.leader
+    memberships = Membership.group_leaders(id)
     memberships.to_a.map! {|member| member.user}
   end
 
   def members
-    regular_members = Membership.regular_member
+    regular_members = Membership.group_members(id)
     regular_members.to_a.map! {|member| member.user}
   end
 

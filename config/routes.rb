@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :create] do
     member do
       get :admin_status
+      get :manage_groups
     end
   end
 

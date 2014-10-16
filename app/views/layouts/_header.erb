@@ -6,13 +6,16 @@
       <%= link_to "Sign In", "/auth/cas", :class => "btn btn-default" %>
     <% else %>
       <%= link_to "Home", categories_path, :class => "btn btn-default" %>
+      <%= link_to "My Groups", manage_groups_user_path(current_user), :class => "btn btn-default" %> 
       <%= link_to "Sign Out", "/logout", :class => "btn btn-default" %>
+
+      <!-- Admin features -->
       <% if current_user.is_admin? %>
-        <%= link_to "Groups", groups_path, :class => "btn btn-default" %>
-        <%= link_to "Users", users_path, :class => "btn btn-default" %>
+        <%= link_to "Groups", groups_path, :class => "btn btn-danger" %>
+        <%= link_to "Users", users_path, :class => "btn btn-danger" %>
         <!-- New category button and Edit categories button -->
-        <%= link_to "New Category", new_category_path, :class => "btn btn-default" %>
-        <%= link_to "Edit Categories", manage_categories_path, :class => "btn btn-default" %>
+        <%= link_to "New Category", new_category_path, :class => "btn btn-danger" %>
+        <%= link_to "Edit Categories", manage_categories_path, :class => "btn btn-danger" %>
       <% end %>
     <% end %>
   </div>

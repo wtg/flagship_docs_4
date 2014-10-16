@@ -14,6 +14,7 @@
         <th> Private? </th>
         <th> Actions </th>
       </tr>
+      <div style="margin-left: 26px"><%= paginate @categories %></div>
       <% @categories.each do |cat| %>
         <%= render partial: "manage_row", locals: {cat: cat} %>
       <% end %>
