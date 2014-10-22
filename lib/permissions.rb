@@ -83,7 +83,7 @@ module Permissions
     return true if !current_user.nil? and current_user.is_admin?
     # current user is a member of the category's
     #   group for a document that is private
-    unless document.category.group.nil?
+    unless document.category.group.nil? or current_user.nil?
       return true if document.is_private? and 
                     (document.category.group.members.include?(current_user) or
                      document.category.group.leaders.include?(current_user))
