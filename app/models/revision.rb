@@ -21,9 +21,28 @@ class Revision < ActiveRecord::Base
     ext = case file_type
       # PDF Files
       when "application/pdf" then "pdf"
+
+      # Word documents
       when "application/msword" then "doc"
+      when "application/vnd.openxmlformats-officedocument.wordprocessingml.document" then "doc"
+      # Powerpoint formats
+      when "application/vnd.ms-powerpoint" then "ppt"
+      when "application/vnd.openxmlformats-officedocument.presentationml.presentation" then "ppt"
+      #Excel and Excel 2007 files
+      when "application/vnd.ms-excel" then "xls"
+      when "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" then "xls"
+
+      # Open document document
       when "application/vnd.oasis.opendocument.text" then "odt"
+      # Open document presentation
+      when "appplication/"
+      #Open Document Spreadsheet
+      when "application/vnd.oasis.opendocument.spreadsheet" then "ods"
+
+      # External links
       when "external_link" then "doc"
+
+      # Unknown case
       else "other"
     end
     ext
@@ -39,15 +58,15 @@ class Revision < ActiveRecord::Base
     begin
       contents = Textractor.text_from_path(tempfile.path, :content_type => file_type)
     rescue
-      logger.error("Unable to extract text from file. Revision id = #{id}, File name = #{file_name}")
+      logger.error("Unable to extract text from file.")
       contents = nil
     end
     tempfile.unlink
 
-    # Get rid of utf-8 control characters 
-    contents.gsub!(/\P{ASCII}/, '') if !contents.blank?
-    # Redundant line breaks are useless to us
-    self.search_text = contents.gsub(/(\r?\n)+/,"\n") if !contents.blank?
+    # Get rid of utf-8 control characters and redundant line breaks
+    contents = contents.gsub!(/\P{ASCII}/, '').gsub(/(\r?\n)+/,"\n") if !contents.blank?
+
+    update_column(:search_text, contents)
   end
 
 

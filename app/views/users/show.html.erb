@@ -5,24 +5,26 @@
   </ol>
 
   <div class="panel-body">
-    <h3> 
-      <%= @user.username.capitalize %>
-      <% if @user.is_admin? %>
-         - Flagship Docs Admin 
-      <% end %>
-    </h3>
-    <hr />
-    <h4> Groups </h4>
-      <% @user.groups.uniq.each do |group| %>
-        <%= link_to group.name, group %> 
-        <br />
-      <% end %>
-    <br />
-    <h4> Documents Uploaded </h4>
+    <div class="container">
+      <h3> 
+        <%= @user.username.capitalize %>
+        <% if @user.is_admin? %>
+           - Flagship Docs Admin 
+        <% end %>
+      </h3>
+      <hr />
+      <h4> Groups </h4>
+        <% @user.groups.uniq.each do |group| %>
+          <%= link_to group.name, group %> 
+          <br />
+        <% end %>
+      <br />
+      <h4> Documents Uploaded </h4>
       <% @user.documents.each do |doc| %>
         <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
         <br />
       <% end %>
+    </div>
   </div>
 
 </div>

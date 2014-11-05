@@ -6,7 +6,9 @@
 
   <div class="panel-body">
     <%= form_for @category do |f| %>
-      <%= render partial: "form", locals: {f: f} %>
+      <div class="container">
+        <%= render partial: "form", locals: {f: f} %>
+      </div>
     <% end %>
   </div>
 </div>

@@ -1,6 +1,8 @@
-<%= link_to category_path(Category.find(@document.category_id)), :class => "btn btn-default btn-xs" do %>
+<%= link_to prev_page, :class => "btn btn-default btn-xs" do %>
   <i class="fa fa-angle-double-left fa-lg"></i> back
 <% end %>
+
+<!-- Document - Latest Revision and Details -->
 <div class="row">
   <div class="col-md-4">
     <h3> <%= @document.title.truncate(30) %> </h3>
@@ -24,6 +26,8 @@
       <%= render partial: "edit_document" %> 
     <% end %>
   </div>
+
+  <!-- Past Revisions -->
   <div class="col-md-7">
     <div class="panel panel-default">
       <ol class="breadcrumb">

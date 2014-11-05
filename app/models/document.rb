@@ -24,9 +24,4 @@ class Document < ActiveRecord::Base
     revisions.sum(:download_count)
   end
 
-  def self.latest_docs
-    latest = Revision.all.order("updated_at desc").to_a.reject { |rev| rev.document.is_private == true }
-    latest = latest[0..7]
-  end
-
 end
