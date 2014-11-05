@@ -13,4 +13,4 @@ Upload files, add revisions, track revision history, and browse other group's li
 
 Deployment
 ----------
-Works like any rails application through apache/nginx and passenger. If you run into any specific issues, feel free to contact senate-webmaster@union.rpi.edu for assistance. 
+Can be deployed like any rails application with an apache/nginx & passenger web server. If you run into any specific issues, feel free to contact senate-webmaster@union.rpi.edu for assistance. 
