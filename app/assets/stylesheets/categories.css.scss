@@ -25,12 +25,24 @@
   a {
     text-decoration: none;
     color: black;
+    padding: 5px;
     &:hover {
       text-decoration: none;
       color: black;
       background: #E6E6E6;
     }
   }
+  i {
+    padding: 4px;
+    &:hover {
+      background: #E6E6E6;
+    }
+  }
+}
+
+.category_nav_name {
+  display: inline;
+  font-size: 15px;
 }
 
 .footer {
@@ -53,7 +65,7 @@
     margin-left: auto;
     margin-right: auto;
     display: block;
-    background-color: #708EA4;
+    background-color: #4285f4;
     border-radius: 0px;
     box-shadow: 2px 2px 1px #0A0A0A;
     text-align: center;
@@ -83,11 +95,5 @@
   }
   a {
     color: white;
-  }
-}
-
-.remove_border_radius {
-  input {
-    border-radius: 0px;
   }
 }

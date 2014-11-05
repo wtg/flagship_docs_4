@@ -1,21 +1,16 @@
-<% @featured.each do |cat, docs| %>
-  <!-- Limit the number of featured categories to 3 
-        and only show categories with documents available -->
-  <% total_featured = 0 %>
-  <% if docs.length > 0 or total_featured > 2 %>
-    <% total_featured += 1 %>
-    <div class="panel panel-default">
-      <ol class="breadcrumb featured_category_title">
-        <li><%= Category.find_by_id(cat).name %></li>
-      </ol>
-      <div class="panel-body" style="padding: 0px">
-        <% docs.each do |doc| %>
-          <% if !doc.current_revision.nil? %>
-            <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
-          <% end %>
+<% featured.each do |category, docs| %>
+  <% if !docs.empty? and !category.nil?%>
+    <div class="container">
+      <% if category.is_root? %>
+        <h4> <%= category.name %> </h4>
+      <% else %>
+        <h4> <%= "#{category.root.name} - #{category.name}" %> </h4> 
+      <% end %>
+      <% docs.each do |doc| %>
+        <% if !doc.current_revision.nil? %>
+          <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
         <% end %>
-      </div>
+      <% end %>
     </div>
   <% end %>
 <% end %>
-

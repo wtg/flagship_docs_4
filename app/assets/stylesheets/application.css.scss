@@ -15,21 +15,42 @@
  *= require_self
  */
 
-$btn-default-bg: #708EA4;
-$btn-default-color: #FFFFFF;
+/* Bootstrap Variable Overrides */
+/* ---------------------------- */
+/* ---------------------------- */
 
+$btn-default-bg: #4285f4;
+$btn-default-border: #4285f4;
+$btn-default-color: #FFFFFF; 
 $btn-danger-color: #FFFFFF;
 
+$navbar-default-bg: #434343;
+
+$breadcrumb-bg: #434343;
+$panel-default-border: #434343;
+$panel-border-radius: 0px;
+/* ---------------------------- */
+/* ---------------------------- */
 
 @import "bootstrap";
 @import "bootstrap/theme";
 
-html {
-  height: 100%;
-}
 
 body {
-  height: 100%;
+  margin-top: 85px;
+}
+
+div {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+input[type=search], input[type=text] {
+  border-radius: 0px;
 }
 
 .alert {
@@ -39,6 +60,7 @@ body {
 
 .btn-default {
   border-radius: 0px;
+  border: 1px solid #4285f4;
 }
 
 .btn-danger {
@@ -48,10 +70,27 @@ body {
 
 .breadcrumb {
   margin: 0px;
+  color: #FFFFFF;
+  h3 {
+    color: #FFFFFF;
+  }
+  border-radius: 0px;
 }
 
 .panel-body {
-  padding: 15px 0px 0px 5px;
+  padding: 15px 0px 10px 5px;
+}
+
+.navbar {
+  padding-top: 10px;
+
+  .container-fluid {
+    a {
+      h3 {
+        color: #FFFFFF;
+      }
+    }
+  }
 }
 
 .nav-stacked {
@@ -60,14 +99,6 @@ body {
       background: #C2D6FF;
     }
   }
-}
-
-.header {
-  background-color: whitesmoke;
-  border-bottom: 1px whitesmoke solid;
-  margin-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 footer {

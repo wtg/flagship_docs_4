@@ -2,7 +2,7 @@
   <ol class="breadcrumb">
     <li><%= link_to "Home", categories_path %></li>
     <li class="active"><%= @group.name.capitalize %></li>
-    <% if admin? %>
+    <% if admin? or @group.is_leader?(current_user) %>
       <div class="pull-right"><%= link_to "Edit", edit_group_path(@group), :class => "btn btn-primary btn-xs" %></div>
     <% end %>
   </ol>
@@ -13,9 +13,11 @@
     </h3>
     <hr />
 
-    <% if @group.category_names.length > 0 %>
+    <% if @group.categories.length > 0 %>
       <h4> Categories </h4>
-        <%= @group.category_names %>
+      <% @group.categories.each do |category| %>
+        <%= link_to category.name, category %>
+      <% end %>
       <hr />
     <% end %>
 

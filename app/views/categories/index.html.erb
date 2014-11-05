@@ -1,9 +1,20 @@
-<% if !@featured.nil? and @featured.length > 0 %>
-	<h3> Featured Categories </h3>
-	<%= render partial: "featured_categories", locals: {featured: @featured} %>
+<% if !@featured.nil? %>
+  <div class="panel panel-default">
+    <div class="breadcrumb">
+      <h3> Featured Categories </h3>
+    </div>
+    <div class="panel-body">
+      <%= render partial: "featured_categories", locals: {featured: @featured} %>
+    </div>
+  </div>
 <% end %>
-<% if !@latest_docs.nil? and @latest_docs.length > 0 %>
-	<hr />
-	<h3> Recent Documents </h3>
-	<%= render partial: "latest_documents", locals: {latest_docs: @latest_docs} %>
-<% end %>
+<div class="panel panel-default">
+  <div class="breadcrumb">
+    <h3> Categories </h3>
+  </div>
+  <div class="panel-body">
+    <% @categories.each do |cat| %>
+      <%= render partial: "categories/category_tile", locals: {subcategory: cat} %>
+    <% end %>
+  </div>
+</div>

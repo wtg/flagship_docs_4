@@ -5,6 +5,11 @@ class User < ActiveRecord::Base
   has_many :memberships, dependent: :destroy
   has_many :groups, through: :memberships
 
+  def name
+    return full_name if !full_name.nil?
+    return username
+  end
+
   def member_of(group_id)
     # check if user is a member of specific group
     memberships.each do |membership|

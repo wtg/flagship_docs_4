@@ -19,6 +19,12 @@ class Category < ActiveRecord::Base
     parent_id.nil?
   end
 
+  # Get the root of the current category
+  def root
+    return self if is_root?
+    ancestors.select { |category| category.is_root? }.first
+  end
+
   # Collect a list of parent categories
   # Each category the monkey stops as he climbs up the tree
   # Compliments of DHH http://github.com/rails/acts_as_tree
@@ -34,7 +40,7 @@ class Category < ActiveRecord::Base
   def descendants
     node, nodes = self, []
     node.children.each { |child|
-      # Check for circular dependenciess
+      # Check for circular dependencies
       if !nodes.include?(child)
         nodes += [child]
         nodes += child.descendants
@@ -56,13 +62,13 @@ class Category < ActiveRecord::Base
   def self.featured
     # Show featured categories & their documents on the home page
     #  Select featured and public categories
-    categories = Category.where(is_featured: true, is_private: false).order("random()")
-    featured_docs = {}
+    categories = Category.order("random()").where(is_featured: true, is_private: false).limit(3)
 
+    featured_docs = {}
     # select a categories documents that are private, order by upload date
     #  and choose only the most recent four to display
-    categories.each do |cat|
-      featured_docs[cat.id] = cat.documents.where(is_private: false).order("updated_at desc")[0..3]
+    categories.each do |category| 
+      featured_docs[category] = category.documents.where(is_private: false).order("updated_at desc").limit(3)
     end
 
     featured_docs
