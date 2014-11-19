@@ -1,7 +1,9 @@
 <%= form_tag search_documents_path, method: :post, :class => "navbar-form navbar-left" do %>
-  <div class="form-group">
+  <div class="input-group">
     <%= search_field_tag :query, nil, style: "width: 400px; margin-left: 25px",
             :class => "form-control", placeholder: "Search for documents and categories ..." %>
+    <div class="input-group-btn">
+      <%= submit_tag "search", :class => "btn btn-default"%>
+    </div>
   </div>
-  <%= submit_tag "search", :class => "btn btn-default"%>
 <% end %>
