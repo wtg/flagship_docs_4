@@ -8,32 +8,34 @@
   </ol>
 
   <div class="panel-body">
-    <table class="table">
-      <tr>
-        <th> Group Name </th>
-        <th> Leaders </th>
-        <th> Members </th>
-        <th> Actions </th>
-      </tr>
-      <% @groups.each do |group| %>
+    <div class="container">
+      <table class="table">
         <tr>
-          <td> <%= link_to group.name, group_path(group) %> </td>
-          <td> 
-            <% if group.leaders.length > 0 %>
-              <%= group.leader_names %>
-            <% end %>
-          </td>
-          <td> 
-            <% if group.members.length > 0 %>
-              <%= group.member_names %> 
-            <% end %>
-          </td>
-          <td> 
-            <%= link_to "Edit", edit_group_path(group), :class => "btn btn-primary btn-xs" %>
-            <%= link_to "Delete", group_path(group), method: :delete, :class => "btn btn-primary btn-xs" %>
-          </td>
+          <th> Group Name </th>
+          <th> Leaders </th>
+          <th> Members </th>
+          <th> Actions </th>
         </tr>
-      <% end %>
-    </table>
+        <% @groups.each do |group| %>
+          <tr>
+            <td> <%= link_to group.name, group_path(group) %> </td>
+            <td> 
+              <% if group.leaders.length > 0 %>
+                <%= group.leader_names %>
+              <% end %>
+            </td>
+            <td> 
+              <% if group.members.length > 0 %>
+                <%= group.member_names %> 
+              <% end %>
+            </td>
+            <td> 
+              <%= link_to "Edit", edit_group_path(group), :class => "btn btn-primary btn-xs" %>
+              <%= link_to "Delete", group_path(group), method: :delete, :class => "btn btn-primary btn-xs" %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
 </div>

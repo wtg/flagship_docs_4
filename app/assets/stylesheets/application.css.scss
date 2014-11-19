@@ -24,10 +24,16 @@ $btn-default-border: #4285f4;
 $btn-default-color: #FFFFFF; 
 $btn-danger-color: #FFFFFF;
 
-$navbar-default-bg: #434343;
+$navbar-default-bg: #000000;
+$navbar-default-link-color: #FFFFFF;
+$navbar-default-link-hover-color: #0066FF;
+$navbar-default-link-hover-bg: #FFFFFF;
+$navbar-default-link-active-bg: #FFFFFF;
 
-$breadcrumb-bg: #434343;
-$panel-default-border: #434343;
+$dropdown-link-hover-color: #0066FF;
+
+$breadcrumb-bg: #333333;
+$panel-default-border: #333333;
 $panel-border-radius: 0px;
 /* ---------------------------- */
 /* ---------------------------- */
@@ -72,6 +78,8 @@ input[type=search], input[type=text] {
   margin: 0px;
   color: #FFFFFF;
   h3 {
+    margin: 0px;
+    padding: 15px;
     color: #FFFFFF;
   }
   border-radius: 0px;
@@ -82,7 +90,7 @@ input[type=search], input[type=text] {
 }
 
 .navbar {
-  padding-top: 10px;
+  padding-top: 5px;
 
   .container-fluid {
     a {
