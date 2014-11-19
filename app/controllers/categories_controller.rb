@@ -83,7 +83,8 @@ class CategoriesController < ApplicationController
   end
 
   def subcategories
-    @subcategories = Category.find(params[:id]).children.map{ |c| c.subcategories_json}
+    @subcategories = Category.find(params[:id]).children.sort_by{|c| c.name}
+    @subcategories = @subcategories.map{|c| c.subcategories_json}
 
     render json: @subcategories 
   end

@@ -18,10 +18,10 @@ class ApplicationController < ActionController::Base
 
   # Store the last page our user has visited
   def cache_page
-    return "/" if session[:prev_page].nil?
-    if request.original_url.match("[\/](categories)[\/][0-9][\/](subcategories)")
-      session[:prev_page]
-    else
+    if session[:prev_page].nil?
+      session[:prev_page] = "/" 
+    # only cache page if it's not the current document download page
+    elsif request.original_url.match("[\/](documents)[\/]\d+\z").nil?
       session[:prev_page] = request.original_url
     end
   end

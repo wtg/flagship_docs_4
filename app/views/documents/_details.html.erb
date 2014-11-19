@@ -16,7 +16,7 @@
         <h4> Document from: <%= @document.current_revision.doc_link.truncate(35) %> </h4>
       <% end %>
     <% end %>
-    <%= "From #{@document.user.username}" if !@document.user.nil? %> 
+    <%= "From #{@document.user.name}" if !@document.user.nil? %> 
     <%= "on #{@document.current_revision.updated_at.to_date}" %>
     <br />
     <%= "Download count: #{@document.total_downloads}" %>
@@ -47,7 +47,7 @@
                       <%= image_tag "icons/#{small_document_icon(revision.extension_type)}" %>
                       <%= "Revision #{revision.position}" %> 
                       <span class="pull-right">
-                        <%= "by #{User.find(revision.user_id).full_name}" if !User.find(revision.user_id).nil? %>
+                        <%= "by #{User.find(revision.user_id).name}" if !User.find(revision.user_id).nil? %>
                         <%= "on #{revision.updated_at.to_date}" %>
                       </span>
                     </p>

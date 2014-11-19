@@ -35,7 +35,7 @@
                 </ul>
             </li>
           <% end %>
-          <li> <%= link_to "Profile", "" %> </li>
+          <li> <%= link_to "Profile", user_path(current_user) %> </li>
           <li> <%= link_to "My Groups", manage_groups_user_path(current_user), :class => "navbar-right" %> </li>
           <li> <%= link_to "Sign Out", "/logout", :class => "navbar-right" %> </li>
         <% end %>
