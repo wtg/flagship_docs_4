@@ -3,7 +3,7 @@
 
 <!-- Category list -->
 <ul style="list-style-type: none; padding-left: 15px;" class="categories_nav" >
-  <% categories.each_with_index do |root| %>
+  <% categories.each do |root| %>
     <!-- Show root categories -->
     <li style="display:block-inline" value="root" class="<%= "cat-#{root.id}"%>" >
       <i class="fa fa-caret-right fa-lg" onclick="getSubCategories(<%= root.id %>)"></i>

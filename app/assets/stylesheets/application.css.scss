@@ -41,9 +41,8 @@ $panel-border-radius: 0px;
 @import "bootstrap";
 @import "bootstrap/theme";
 
-
 body {
-  margin-top: 85px;
+  padding-top: 85px;
 }
 
 div {
@@ -67,6 +66,10 @@ input[type=search], input[type=text] {
 .btn-default {
   border-radius: 0px;
   border: 1px solid #4285f4;
+  &:hover {
+    background: #254C8B;
+    border: 1px solid #254C8B;
+  }
 }
 
 .btn-danger {
@@ -85,13 +88,27 @@ input[type=search], input[type=text] {
   border-radius: 0px;
 }
 
+.modal-header {
+  background: #333333;
+  h4 {
+    color: #FFFFFF;
+  }
+  button {
+    span {
+      color: #FFFFFF;
+      &:hover {
+        color: #FFFFFF;
+      }
+    }
+  }
+}
+
 .panel-body {
   padding: 15px 0px 10px 5px;
 }
 
 .navbar {
   padding-top: 5px;
-
   .container-fluid {
     a {
       h3 {

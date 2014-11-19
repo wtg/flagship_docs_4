@@ -25,8 +25,8 @@
     <span style="font-size: 10px"> Checking this box allows non-group members to revise this document.</span>
   </div>
 
-  <br />
   <%= f.label :category %>
+  <br>
   <!-- We are editing a document, get the category from the document object -->
   <% if !include_revision and !@document.category_id.nil? %>
     <%= f.select :category_id, @permitted_categories.collect { |c| [c.name, c.id] }, {include_black: true, selected: @document.category_id} %>
@@ -50,14 +50,16 @@
     <%= f.fields_for :revision do |rev| %>
       <div class="row">
         <div class="col-md-5">
+          <%= f.label :file %>
           <%= rev.file_field :file %>
         </div>
         <div class="col-md-1">
-          <small> or </small>
+          <br>
+          <small><b> or </b></small>
         </div>
         <div class="col-md-6" style="display: inline">
-          <%= rev.label "Google Drive Link" %>
-          <%= rev.text_field :doc_link, :class => "form-control" %>
+          <%= rev.label "External Link" %>
+          <%= rev.text_field :doc_link, placeholder: "https://docs.google.com/document/...", :class => "form-control" %>
         </div>
       </div>
     <% end %>
