@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_filter :admin?, except: [:show]
 
   def index
-    @groups = Group.all
+    @groups = Group.all.page(params[:page])
   end
 
   def show

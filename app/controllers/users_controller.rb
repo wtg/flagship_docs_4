@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
+    @documents = @user.documents.page(params[:page])
   end
 
   def edit

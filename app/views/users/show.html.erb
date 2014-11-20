@@ -1,9 +1,9 @@
 <div class="panel panel-default">
   <ol class="breadcrumb">
     <li><%= link_to "Home", categories_path %></li>
-    <li class="active"><%= @user.name.capitalize %></li>
+    <li class="active"><%= @user.name %></li>
 
-    <% if @user == current_user || current_user.is_admin? %>
+    <% if @user == current_user or current_user.is_admin? %>
       <span class="pull-right"> <%= link_to "edit", edit_user_path(@user), :class => "btn btn-default btn-xs" %> 
     <% end %>
   </ol>
@@ -12,7 +12,7 @@
     <div class="container">
 
       <h3> 
-        <%= @user.name.capitalize %>
+        <%= @user.name %>
         <% if @user.is_admin? %>
            - Flagship Docs Admin 
         <% end %>
@@ -20,14 +20,17 @@
 
       <hr />
       <h4> Groups </h4>
-        <% @user.groups.uniq.each do |group| %>
-          <%= link_to group.name, group %> 
-          <br />
-        <% end %>
+        <div class="container">
+          <% @user.groups.uniq.each do |group| %>
+            <%= link_to group.name, group %> 
+            <br />
+          <% end %>
+        </div>
       <br />
 
-      <h4> Documents Uploaded </h4>
-      <% @user.documents.each do |doc| %>
+      <h4> Documents Uploaded </h4> 
+      <div class="container"> <%= paginate @documents %> </div>
+      <% @documents.each do |doc| %>
         <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
       <% end %>
     </div>
