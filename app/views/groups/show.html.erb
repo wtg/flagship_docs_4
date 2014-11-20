@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <ol class="breadcrumb">
     <li><%= link_to "Home", categories_path %></li>
-    <li class="active"><%= @group.name.capitalize %></li>
+    <li class="active"><%= @group.name %></li>
     <% if admin? or @group.is_leader?(current_user) %>
       <div class="pull-right"><%= link_to "Edit", edit_group_path(@group), :class => "btn btn-primary btn-xs" %></div>
     <% end %>
@@ -10,26 +10,32 @@
   <div class="panel-body">
     <div class="container">
       <h3> 
-        <%= @group.name.capitalize %>
+        <%= @group.name %>
       </h3>
       <hr />
 
       <% if @group.categories.length > 0 %>
         <h4> Categories </h4>
-        <% @group.categories.each do |category| %>
-          <%= link_to category.name, category %>
-        <% end %>
+        <div class="container">
+          <% @group.categories.each do |category| %>
+            <%= link_to category.name, category %>
+          <% end %>
+        </div>
         <hr />
       <% end %>
 
       <% if @group.leader_names.length > 0 %>
         <h4> Leaders </h4>
-        <%= @group.leader_names %>
+        <div class="container">
+          <%= @group.leader_names %>
+        </div>
       <% end %>
 
       <% if @group.member_names.length > 0 %>
         <h4> Members </h4>
-        <%= @group.member_names %>
+        <div class="container">
+          <%= @group.member_names %>
+        </div>
       <% end %>
 
       <% if @group.documents.length > 0 %>
