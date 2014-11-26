@@ -1,10 +1,8 @@
 <% if category_viewable?(subcategory) %>
-  <div class="unstyled_link">
+  <div class="document-list-item unstyled-link">
     <%= link_to category_path(subcategory, view_style:"list") do %>
-      <div class="document_listitem_hover">
-        <%= image_tag "icons/icon_folder_50.png" %>
-        <b><%= subcategory.name.truncate(16) %></b>
-      </div>
+      <%= image_tag "icons/icon_folder_50.png" %>
+      <b><%= subcategory.name.truncate(16) %></b>
     <% end %>
   </div>
 <% end %>

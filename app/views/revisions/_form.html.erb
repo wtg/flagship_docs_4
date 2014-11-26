@@ -1,5 +1,5 @@
 <%= form_for :revision, html: { multipart: true }, url: document_revisions_path(@document), method: :post do |f| %>
-	<div class="modal-body">
+	<div class="modal-body" style="color: #000000">
 	  <p> <b>Document:</b> <%= @document.title %> </p>
 		<p> <b>Description:</b> <%= @document.description %> </p>
 		<p> <b>Category:</b> <%= @document.category.name %> </p>

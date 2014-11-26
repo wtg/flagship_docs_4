@@ -1,17 +1,17 @@
-<% if !@featured.nil? %>
+<% if !@featured.nil? and !@featured.values.all? {|docs| docs.empty?} %>
   <div class="panel panel-default">
-    <div class="breadcrumb">
-      <h3> Featured Categories </h3>
-    </div>
+    <ol class="breadcrumb">
+      <h4> Featured Categories </h4>
+    </ol>
     <div class="panel-body">
       <%= render partial: "featured_categories", locals: {featured: @featured} %>
     </div>
   </div>
 <% end %>
 <div class="panel panel-default">
-  <div class="breadcrumb">
-    <h3> Categories </h3>
-  </div>
+  <ol class="breadcrumb">
+    <h4> Browse Categories </h4>
+  </ol>
   <div class="panel-body">
     <% @categories.each do |cat| %>
       <%= render partial: "categories/category_tile", locals: {subcategory: cat} %>

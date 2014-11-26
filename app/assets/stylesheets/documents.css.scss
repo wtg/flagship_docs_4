@@ -6,28 +6,16 @@
   text-align: center;
 }
 
-.document_tile {
-  padding: 2px;
-  height: 212px;
-  width: 182px;
-  float: left;
-  text-align: center;
-  .doc_tile_hover {
-    &:hover { 
-      background-color: #C2D6FF;
-    }
-  }
-}
-
-.document_listitem_hover {
-  padding: 5px;
-  &:hover {
-    background-color: #C2D6FF;
-  }
-}
-
 .document_show {
   margin-left: 300px;
   position:  relative;
   text-align: center;
+}
+
+/* Document List Item */
+.document-list-item {
+  padding: 5px;
+  &:hover {
+    background-color: #C2D6FF;
+  }
 }
