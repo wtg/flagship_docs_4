@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   def index
     # Get all viewable categories
-    @categories = Category.roots.reject { |c| !category_viewable?(c) and c.is_private }
+    @categories = Category.roots.order(name: :asc).reject { |c| !category_viewable?(c) and c.is_private }
 
     # Get featured categories and recently uploaded documents
     #  making sure to hide private docs and categories
@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
   def show
     # Get category and its subcategories
     @category = Category.find params[:id]
-    @subcategories = @category.children
+    @subcategories = @category.children.sort_by {|c| c.name}
     
     # Check if category is restricted to group members only
     if @category.is_private

@@ -1,67 +1,77 @@
-<%= link_to prev_page, :class => "btn btn-default btn-xs" do %>
-  <i class="fa fa-angle-double-left fa-lg"></i> back
-<% end %>
-
-<!-- Document - Latest Revision and Details -->
+<!-- Current document revision download and details -->
 <div class="row">
-  <div class="col-md-4">
-    <h3> <%= @document.title.truncate(30) %> </h3>
-    <p> <%= @document.description.truncate(250) %> </p>
-    <br />
-    <%= link_to download_document_path, "data-no-turbolink" => true do %>
-      <%= image_tag "icons/#{document_icon(@document.current_revision.extension_type)}" %>
-      <% if @document.current_revision.file_upload? %> 
-        <h4> Download the latest revision here </h4>
-      <% elsif @document.current_revision.external_link? %>
-        <h4> Document from: <%= @document.current_revision.doc_link.truncate(35) %> </h4>
+  <div class="panel panel-default">
+    <ol class="breadcrumb">
+      <% @document.category.ancestors.reverse.each do |cat| %>
+        <li> <%= link_to cat.name, category_path(cat, view_style: params[:view_style]) %> </li>
       <% end %>
-    <% end %>
-    <%= "From #{@document.user.name}" if !@document.user.nil? %> 
-    <%= "on #{@document.current_revision.updated_at.to_date}" %>
-    <br />
-    <%= "Download count: #{@document.total_downloads}" %>
-    <br />
-    <% if can_edit_document(@document) %>
-      <br />
-      <%= render partial: "edit_document" %> 
-    <% end %>
-  </div>
-
-  <!-- Past Revisions -->
-  <div class="col-md-7">
-    <div class="panel panel-default">
-      <ol class="breadcrumb">
-        <li> Document Revision History </li>
-        <% if can_revise_document(@document) %>
-          <div class="pull-right"><%= render partial: "revisions/upload.html.erb" %></div>
-        <% end %>
-      </ol>
-      <div class="panel-body">
-        <% if @document.revisions.length > 1 %>
-          <% @document.revisions.order("position asc").each do |revision| %>
-            <% if revision.position != 0 %>
-              <div class= "unstyled_link">
-                <%= link_to download_document_revision_path(document_id: params[:id], revision_id: revision.id), "data-no-turbolink" => true do %>
-                  <div class="document_listitem_hover">
-                    <p>
-                      <%= image_tag "icons/#{small_document_icon(revision.extension_type)}" %>
-                      <%= "Revision #{revision.position}" %> 
-                      <span class="pull-right">
-                        <%= "by #{User.find(revision.user_id).name}" if !User.find(revision.user_id).nil? %>
-                        <%= "on #{revision.updated_at.to_date}" %>
-                      </span>
-                    </p>
-                  </div>
-               <% end %>
-              </div>
+      <li> <%= link_to @document.category.name, category_path(@document.category, view_style: params[:view_style]) %> </li>
+      <li class="active"> <%= @document.title %> </li>
+    </ol>
+    <div class="panel-body">
+      <div class="container">
+        <h2> <%= @document.title %> </h2>
+        <p> <%= @document.description%> </p>
+        <p> 
+          <!-- Download link -->
+          <%= link_to download_document_path, "data-no-turbolink" => true do %>
+            <%= image_tag "icons/#{document_icon(@document.current_revision.extension_type)}" %>
+            <% if @document.current_revision.file_upload? %> 
+              <h4> Download the latest revision here </h4>
+            <% elsif @document.current_revision.external_link? %>
+              <h4> Document from: <%= @document.current_revision.doc_link %> </h4>
             <% end %>
           <% end %>
-        <% else %>
-          <p> This document has not been revised yet. </p>
-        <% end %>
+        </p>
+        <p>
+          <!-- Document details -->
+          <%= "From #{@document.user.name}" if !@document.user.nil? %> 
+          <%= "on #{@document.current_revision.updated_at.to_date}" %>
+          <br />
+          <%= "Download count: #{@document.total_downloads}" %>
+          <br />
+          <% if can_edit_document(@document) %>
+            <br />
+            <%= render partial: "edit_document" %> 
+          <% end %>
+        </p>
       </div>
     </div>
   </div>
 </div>
 
-
+<!-- Past Revisions -->
+<div class="row">
+  <div class="panel panel-default">
+    <ol class="breadcrumb">
+      <li> Document Revision History </li>
+      <% if can_revise_document(@document) %>
+        <div class="pull-right"><%= render partial: "revisions/upload.html.erb" %></div>
+      <% end %>
+    </ol>
+    <div class="panel-body">
+      <% if @document.revisions.length > 1 %>
+        <% @document.revisions.order("position asc").each do |revision| %>
+          <% if revision.position != 0 %>
+            <div class= "unstyled_link">
+              <%= link_to download_document_revision_path(document_id: params[:id], revision_id: revision.id), "data-no-turbolink" => true do %>
+                <div class="document_listitem_hover">
+                  <p>
+                    <%= image_tag "icons/#{small_document_icon(revision.extension_type)}" %>
+                    <%= "Revision #{revision.position}" %> 
+                    <span class="pull-right">
+                      <%= "by #{User.find(revision.user_id).name}" if !User.find(revision.user_id).nil? %>
+                      <%= "on #{revision.updated_at.to_date}" %>
+                    </span>
+                  </p>
+                </div>
+             <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <p> This document has not been revised yet. </p>
+      <% end %>
+    </div>
+  </div>
+</div>

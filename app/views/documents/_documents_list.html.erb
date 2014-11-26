@@ -1,11 +1,13 @@
 <div class="panel panel-default">
-  <div class="breadcrumb">
-    <div class="pull-right" style="padding:20px">
-      <%= render partial: "documents/documents_view_style" %>
-    </div>
-    <h3 style="display: inline-block"> 
-      <%= @category.name %>
-    </h3> 
+  <ol class="breadcrumb">
+    <% if !@category.ancestors.nil? %>
+      <% @category.ancestors.reverse.each do |cat| %>
+        <li> <%= link_to cat.name, category_path(cat, view_style: params[:view_style]) %> </li>
+      <% end %>
+    <% end %>
+    <li class="active"> <%= @category.name %> </li>
+    <%= render partial: "documents/documents_view_style" %>
+  </ol>
   </div>
   <div class="panel-body">
     <div style="margin-left: 26px"> <%= paginate @documents %> </div>

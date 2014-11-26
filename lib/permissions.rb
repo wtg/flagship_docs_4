@@ -34,17 +34,26 @@ module Permissions
     end
   end
 
-  # Check if the current user can view the current category
+  # Check if user is able to view a specific category
   def category_viewable?(category)
-    # Check if user is able to view a specific category
-    if !current_user.nil?
+    # no user in session
+    if current_user.nil? 
+      if category.is_private?
+        return false
+      else
+        return true
+      end
+    end
+    # current user in session
+    if category.is_private? 
       if current_user.is_admin? or current_user.member_of(category.group_id)
         return true
       else
         return false
       end
     else
-      return false
+      # category is not private, anyone can view it
+      return true
     end
   end
 
