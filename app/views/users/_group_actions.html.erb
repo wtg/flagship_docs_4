@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <div class="panel-heading" role="tab" id="<%='heading#{index}'%>">
+    <h4 class="panel-title">
+      <a class="<%= if index != 0 then "collapsed" end%>" data-toggle="<%= if index == 0; "collapse" else "collapsed" end %>" data-parent="#groupsAccordion" href="#<%="collapse#{index}"%>" aria-expanded="true" aria-controls="<%="collapse#{index}"%>">
+        <%= group.name %>
+      </a>
+    </h4>
+  </div>
+  <div id="<%="collapse#{index}"%>" class="panel-collapse collapse<%= if index == 0; "in" else "" end %>" role="tabpanel" aria-labelledby="<%="heading#{index}"%>">
+    <div class="panel-body">
+      <table class="table">
+        <tr> 
+          <th> Membership Status </th>
+          <% if group.is_leader?(current_user) %>
+            <th> New SubCategory </th>
+          <% end %>
+        </tr>
+        <tr> 
+          <td> </td>
+          <% if group.is_leader?(current_user) %>
+            <td> </td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
