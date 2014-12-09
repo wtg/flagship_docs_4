@@ -1,0 +1,20 @@
+<div class="form-group">
+  <%= form_for :category do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, :class => "form-control" %>
+    <br />
+    <%= f.label :description %>
+    <%= f.text_field :description, :class => "form-control" %>
+    <br />
+    <%= f.label :is_private %>
+    <%= f.check_box :is_private %>
+    <br />
+    <%= f.label :is_writable %>
+    <%= f.check_box :is_writable %>
+    <br />
+    <%= f.label :is_featured %>
+    <%= f.check_box :is_featured %>
+    <hr />
+    <%= f.submit "Add" %>
+  <% end %>
+</div>

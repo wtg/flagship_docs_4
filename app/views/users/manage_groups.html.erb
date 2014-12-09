@@ -6,8 +6,8 @@
     <br />
     <div class="container">
       <div class="panel-group" id="groupsAccordion" role="tablist" aria-multiselectable="true">
-        <% current_user.groups.each_with_index do |group, index| %>
-          <%= render partial: "group_actions", locals: {index: index, group: group} %>
+        <% current_user.memberships.each_with_index do |membership, index| %>
+          <%= render partial: "group_actions", locals: {index: index, membership: membership} %>
         <% end %>
       </div>
     </div>

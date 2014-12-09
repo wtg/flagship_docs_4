@@ -22,4 +22,9 @@ class Membership < ActiveRecord::Base
     where(level: Membership::LEVELS[:leader], group_id: group_id)
   end
 
+  def member_level
+    return "Member" if LEVELS[:regular] == level
+    return "Leader" if LEVELS[:leader] == level
+  end
+
 end
