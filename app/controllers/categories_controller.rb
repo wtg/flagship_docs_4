@@ -92,6 +92,6 @@ class CategoriesController < ApplicationController
   private
     def category_params
       params.require(:category).permit(:name, :description,
-        :group_id, :parent_id, :is_featured, :is_private, :is_writable)
+        :group_id, :is_featured, :is_private, :is_writable)
     end
 end

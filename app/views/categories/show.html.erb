@@ -1,5 +1,35 @@
-<% if @view_style == "grid" %>
-  <%= render partial: "documents/documents_grid" %>
-<% else %>
-  <%= render partial: "documents/documents_list" %>
-<% end %>
+<!-- Category Header -->
+<div class="panel panel-default">
+  <!-- Previous category breadcrumb navigation -->
+  <ol class="breadcrumb">
+    <% if !@category.ancestors.nil? %>
+      <% @category.ancestors.reverse.each do |cat| %>
+        <li> <%= link_to cat.name, cat %> </li>
+      <% end %>
+    <% end %>
+    <li class="active"> <%= @category.name %> </li>
+    <!-- Category view style selector -->
+    <%= render partial: "documents/documents_view_style" %>
+  </ol>
+
+  <!-- Category Body -->
+  <div class="panel-body">
+    <!-- If the current user is a leader in the group that controls this category
+       then display a button for this user to add a new subcategory -->
+    <% if !@category.group.nil? %>
+      <% if current_user.is_admin? || @category.group.is_leader?(current_user) %>
+        <div style="margin: 20px">
+          <%= link_to "New Category", "#", :class => "btn btn-primary btn-xs" %> 
+        </div>
+        <hr />
+      <% end %>
+    <% end %>
+
+    <!-- Category Documents and Subcategories in requested view format -->
+    <% if @view_style == "grid" %>
+      <%= render partial: "documents/documents_grid" %>
+    <% else %>
+      <%= render partial: "documents/documents_list" %>
+    <% end %>
+  </div>
+</div>
