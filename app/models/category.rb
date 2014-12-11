@@ -8,6 +8,16 @@ class Category < ActiveRecord::Base
   belongs_to :group
 
   validates_presence_of :name
+  before_save :add_group
+
+  # Add controlling group if category is a subcategory
+  def add_group 
+    if ancestors.empty?
+      parent_id = nil
+    else
+      parent_id = parent.parent_id
+    end
+  end 
 
   # Find all categories serving as a root
   def self.roots
