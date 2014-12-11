@@ -15,27 +15,41 @@
       <hr />
 
       <% if @group.categories.length > 0 %>
+      <div class="jumbotron">
         <h4> Categories </h4>
-        <div class="container">
-          <% @group.categories.each do |category| %>
-            <%= link_to category.name, category %>
-          <% end %>
-        </div>
         <hr />
+        <div class="container">
+          <ul class="nav nav-pills">
+          <% @group.categories.each do |category| %>
+            <li> 
+              <%= link_to category do %>
+                <%= image_tag "icons/icon_folder_50.png" %> <%= category.name %>
+              <% end %>
+            </li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
       <% end %>
 
       <% if @group.leader_names.length > 0 %>
+      <div class="jumbotron">
         <h4> Leaders </h4>
+        <hr />
         <div class="container">
           <%= @group.leader_names %>
         </div>
+      </div>
       <% end %>
 
       <% if @group.member_names.length > 0 %>
+      <div class="jumbotron">
         <h4> Members </h4>
+        <hr />
         <div class="container">
           <%= @group.member_names %>
         </div>
+      </div>
       <% end %>
 
       <% if @group.documents.length > 0 %>

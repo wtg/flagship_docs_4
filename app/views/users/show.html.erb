@@ -19,21 +19,37 @@
       </h3>
 
       <hr />
-      <h4> Groups </h4>
+
+      <div class="jumbotron">
+        <h4> Groups </h4>
+        <hr />
         <div class="container">
-          <% @user.groups.uniq.each do |group| %>
-            <%= link_to group.name, group %> 
-            <br />
-          <% end %>
+          <ul class="nav nav-pills">
+            <% @user.groups.uniq.each do |group| %>
+              <li class="active"> 
+                <%= link_to group do %> 
+                  <% if group.is_leader?(@user) %>
+                    <i class="fa fa-bolt"> </i>
+                  <% elsif group.is_member?(@user) %>
+                    <i class="fa fa-users"> </i>
+                  <% end %>
+                  <%= group.name %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
         </div>
+      </div>
       <br />
 
-      <h4> Documents Uploaded </h4> 
-      <div class="container"> <%= paginate @documents %> </div>
-      <% @documents.each do |doc| %>
-        <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
-      <% end %>
+      <div class="jumbotron">
+        <h4> Documents Uploaded </h4> 
+        <hr />
+        <div class="container"> <%= paginate @documents %> </div>
+        <% @documents.each do |doc| %>
+          <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
+        <% end %>
+      </div>
     </div>
   </div>
-
 </div>
