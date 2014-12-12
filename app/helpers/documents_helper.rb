@@ -7,6 +7,7 @@ module DocumentsHelper
       when "ppt" then "icon_ppt.png"
       when "xls" then "icon_xls.png"
       when "odt" then "icon_odt.png"
+      when "odp" then "icon_odp.png"
       when "ods" then "icon_ods.png"
       else "icon_other.png"
     end

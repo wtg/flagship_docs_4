@@ -46,7 +46,6 @@ class DocumentsController < ApplicationController
   end
 
   def create
-
     if !revision_params.nil?
       # Create our new document
       @document = Document.new(document_params)
