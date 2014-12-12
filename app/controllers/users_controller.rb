@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :admin?, except: [:show, :edit, :manage_groups]
 
   def index
-    @users = User.all.page(params[:page])
+    @users = User.order("username ASC").all.page(params[:page])
   end
 
   def show
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       flash[:error] = "Error updating user"
     end
 
-    redirect_to edit_user_path(@user)
+    redirect_to root_path
   end
 
   def destroy

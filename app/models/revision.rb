@@ -35,7 +35,7 @@ class Revision < ActiveRecord::Base
       # Open document document
       when "application/vnd.oasis.opendocument.text" then "odt"
       # Open document presentation
-      when "appplication/"
+      when "appplication/vnd.oasis.opendocument.presentation" then "odp"
       #Open Document Spreadsheet
       when "application/vnd.oasis.opendocument.spreadsheet" then "ods"
 
@@ -64,7 +64,7 @@ class Revision < ActiveRecord::Base
     tempfile.unlink
 
     # Get rid of utf-8 control characters and redundant line breaks
-    contents = contents.gsub!(/\P{ASCII}/, '').gsub(/(\r?\n)+/,"\n") if !contents.blank?
+    contents = contents.gsub(/\p{Cc}/, "").gsub(/\P{ASCII}/, "").gsub(/(\r?\n)+/,"\n") if !contents.blank?
 
     update_column(:search_text, contents)
   end

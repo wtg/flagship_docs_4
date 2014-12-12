@@ -13,36 +13,22 @@
 
   <div class="form-group">
     <%= f.label "Make Private", :style => "display: inline-block" %>
-    <%= f.check_box :is_private, :style => "display: inline-block", value: !@document.nil? ? @document.is_private : '' %>
+    <%= f.check_box :is_private, :style => "display: inline-block", checked: false %>
     <br />
     <span style="font-size: 10px"> Checking this will hide the document from non-group members.</span>
   </div>
 
   <div class="form-group">
     <%= f.label "Everyone Can Edit", :style => "display: inline-block"%>
-    <%= f.check_box :is_writable, :style => "display: inline-block", value: !@document.nil? ? @document.is_writable : '' %>
+    <%= f.check_box :is_writable, :style => "display: inline-block", checked: false %>
     <br />
     <span style="font-size: 10px"> Checking this box allows non-group members to revise this document.</span>
   </div>
 
-  <%= f.label :category %>
-  <br>
-  <!-- We are editing a document, get the category from the document object -->
-  <% if !include_revision and !@document.category_id.nil? %>
-    <%= f.select :category_id, @permitted_categories.collect { |c| [c.name, c.id] }, {include_black: true, selected: @document.category_id} %>
-  <!-- We are uploading a document from a specific category's page; select this category in the upload form -->
-  <% elsif params.has_key?(:id) %>
-    <%= f.select :category_id, @permitted_categories.collect { |c| [c.name, c.id] }, {include_black: true, selected: params[:id]} %>
-    <%= f.hidden_field :category_id, value: params[:id] %>
-  <!-- We are on the home page and have not selected a category; the user can specify which category to upload to -->
-  <% elsif @permitted_categories %>
-    <% if @permitted_categories.length > 0 %>
-        <%= f.select :category_id, @permitted_categories.collect { |c| [c.name, c.id] }, {include_black: true} %>
-    <% else %>
-        <!-- Database is empty or the user is not allowed to upload to any categories on the site -->
-        <p> No categories exist. Please create a category to submit documents. </p>
-    <% end %>
-  <% end %>
+  <br />
+
+  <!-- Category the document is uploaded to -->
+  <%= f.hidden_field :category_id, value: @category.id %>
 
   <!-- Upload file for document creation, hide for document editing -->
   <% if include_revision %>

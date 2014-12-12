@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       user.save
       session[:user_id] = user.id
       flash[:success] = "Your account has been created. Welcome to Flagship Docs!"
-      redirect_to "/"
+      redirect_to edit_user_path(user)
     else
       user = User.find_by_username(cas_hash[:uid])
       flash[:success] = "You have successfully logged in."

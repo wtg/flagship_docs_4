@@ -7,9 +7,7 @@
         <h4> <%= "#{category.root.name} - #{category.name}" %> </h4> 
       <% end %>
       <% docs.each do |doc| %>
-        <% if !doc.current_revision.nil? %>
-          <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
-        <% end %>
+        <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
       <% end %>
     </div>
   <% end %>
