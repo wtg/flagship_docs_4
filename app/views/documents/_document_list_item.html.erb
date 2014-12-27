@@ -1,15 +1,17 @@
-<% if !doc.current_revision.nil? and can_view_document(doc) %> 
-  <div class= "document-list-item unstyled-link">
-    <%= link_to doc do %>
-      <%= image_tag "icons/#{small_document_icon(doc.current_revision.extension_type)}" %>
-      <b> <%= "#{doc.title.truncate(36)}" %> </b> <%= " - #{doc.description.truncate(100)}" %>
-      <div class="pull-right">
-        <%= "Date: #{doc.current_revision.updated_at.to_date}" %>
-        <br/>
-        <% if !doc.user.name.nil? %>
-          <b> <%= "by: #{doc.user.name}" %> </b>
-        <% end %>
-      </div>
+<table class="table table-list-items">
+  <% docs.each do |doc| %>
+    <% if !doc.current_revision.nil? %>
+      <tr class="list-item"> 
+        <td> <%= image_tag "icons/#{small_document_icon(doc.current_revision.extension_type)}" %> <%= doc.title %> </td>
+        <td> <%= doc.description %> </td>
+        <td> 
+          <%= "Date: #{doc.current_revision.updated_at.to_date}" %>
+          <br/>
+          <% if !doc.user.name.nil? %>
+            <b> <%= "by: #{doc.user.name}" %> </b>
+          <% end %>
+        </td>
+      </tr>
     <% end %>
-  </div>
-<% end %>
+  <% end %>
+</table>
