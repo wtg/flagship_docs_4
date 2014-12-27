@@ -12,10 +12,10 @@
   text-align: center;
 }
 
-/* Document List Item */
-.document-list-item {
-  padding: 5px;
+.list-item {
   &:hover {
     background-color: #C2D6FF;
   }
+  height: 100%;
+  width: 100%;
 }

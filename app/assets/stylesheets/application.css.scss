@@ -156,6 +156,25 @@ input[type=search], input[type=text] {
   padding: 0px 0px 10px 5px;
 }
 
+.table {
+  table-layout:fixed;
+}
+
+.table-list-items {
+  td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+  tbody {
+    tr {
+      td {
+        border: 0px;
+      }
+    }
+  }
+}
+
 .thumbnail {
   /* used for document tile */
   width: 225px;

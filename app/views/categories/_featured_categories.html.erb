@@ -6,9 +6,7 @@
       <% else %>
         <h4> <%= "#{category.root.name} - #{category.name}" %> </h4> 
       <% end %>
-      <% docs.each do |doc| %>
-        <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
-      <% end %>
+      <%= render partial: "documents/document_list_item", locals: {docs: docs} %>
     </div>
   <% end %>
 <% end %>
