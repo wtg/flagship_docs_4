@@ -1,7 +1,7 @@
 <table class="table table-list-items">
   <% docs.each do |doc| %>
     <% if !doc.current_revision.nil? %>
-      <tr class="list-item"> 
+      <tr class="list-item" href="<%= document_path(doc) %>"> 
         <td> <%= image_tag "icons/#{small_document_icon(doc.current_revision.extension_type)}" %> <%= doc.title %> </td>
         <td> <%= doc.description %> </td>
         <td> 

@@ -19,3 +19,11 @@
 //= require bootstrap/transition
 //= require turbolinks
 //= require_tree .
+
+/* Listen for click events on list item documents */
+$(document).ready(function($) {
+  $(".list-item").click(function() {
+    // redirect to document#show when clicking on list item
+    window.document.location = $(this).attr("href");
+  });
+});
