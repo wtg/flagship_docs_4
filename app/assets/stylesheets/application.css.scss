@@ -156,6 +156,10 @@ input[type=search], input[type=text] {
   padding: 0px 0px 10px 5px;
 }
 
+.popover {
+  max-width: none;
+}
+
 .table {
   table-layout:fixed;
 }

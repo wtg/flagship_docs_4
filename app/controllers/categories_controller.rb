@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
 
-  before_filter :admin?, except: [:index, :show]
+  before_filter :admin?, except: [:index, :show, :create_subcategory]
 
   # GET /categories
   def index
@@ -59,6 +59,32 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def create_subcategory
+    # Get parent category the new subcategory will be under
+    @parent_category = Category.find_by_id(params[:id])
+
+    # Check hidden field value for invalid parent category
+    if @parent_category.nil? 
+      redirect_to "/"
+    end
+
+    # Check if user is logged in / an admin, or a leader of the parent group
+    if admin? or current_user.leader_of(@parent_category.group_id)
+      # Create subcategory using parent attributes for group id, writability, and visibility
+      if Category.create_using_parent_attributes(subcategory_params)
+        flash[:success] = "Subcategory successfully created."
+      else
+        # Error saving subcategory
+        flash[:error] = "Unable to create subcategory."
+      end
+    else
+      # Permissions error
+      flash[:error] = "Unable to create subcategory. You do not have the required permissions."
+    end
+
+    redirect_to category_path(@parent_category)
+  end
+
   def edit
     @category = Category.find_by_id(params[:id])
     # Get categories and groups for selection dropdowns
@@ -93,5 +119,9 @@ class CategoriesController < ApplicationController
     def category_params
       params.require(:category).permit(:name, :description,
         :group_id, :is_featured, :is_private, :is_writable)
+    end
+
+    def subcategory_params
+      params.require(:category).permit(:name, :description, :is_featured, :parent_id)
     end
 end

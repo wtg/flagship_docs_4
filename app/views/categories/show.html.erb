@@ -18,8 +18,10 @@
        then display a button for this user to add a new subcategory -->
     <% if !current_user.nil? and !@category.group.nil? %>
       <% if current_user.is_admin? || @category.group.is_leader?(current_user) %>
-        <div style="margin: 20px">
-          <%= link_to "New Category", "#", :class => "btn btn-primary btn-xs" %> 
+        <div id="new-subcategory-popover">
+          <button type="button" class="btn btn-primary btn-xs" data-container="#new-subcategory-popover" data-toggle="popover" data-placement="right" data-content="<%= "#{render 'new_subcategory'}" %>">
+            New Category
+          </button>
         </div>
         <hr />
       <% end %>

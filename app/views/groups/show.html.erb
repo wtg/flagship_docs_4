@@ -55,9 +55,7 @@
       <% if @group.documents.length > 0 %>
         <br />
         <h4> Documents Uploaded </h4>
-        <% @group.documents.each do |doc| %>
-          <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
-        <% end %>
+        <%= render partial: "documents/document_list_item", locals: {docs: @group.documents} %>
       <% end %>
     </div>
   </div>

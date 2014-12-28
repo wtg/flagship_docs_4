@@ -7,17 +7,24 @@ class Category < ActiveRecord::Base
   has_many :documents
   belongs_to :group
 
+  # Category validations
   validates_presence_of :name
-  before_save :add_group
+  validates_presence_of :group_id
 
-  # Add controlling group if category is a subcategory
-  def add_group 
-    if ancestors.empty?
-      parent_id = nil
-    else
-      parent_id = parent.parent_id
-    end
-  end 
+  # Set subcategory group, visibility, and writability based on parents
+  def self.create_using_parent_attributes(params)
+    # Fetch parent category and create new subcategory using params
+    parent_category = Category.find_by_id(params[:parent_id])
+    subcategory = Category.new(params)
+
+    # Set attributes based on parent category for consistency
+    subcategory.is_private = parent_category.is_private
+    subcategory.is_writable = parent_category.is_writable
+    subcategory.group_id = parent_category.group_id
+
+    # Attempt to save our new subcategory
+    return subcategory.save
+  end
 
   # Find all categories serving as a root
   def self.roots
