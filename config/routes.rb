@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   resources :categories do
     member do
       get :subcategories
+      post :create_subcategory
     end
     collection do 
       get :manage

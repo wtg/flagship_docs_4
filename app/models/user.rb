@@ -20,6 +20,15 @@ class User < ActiveRecord::Base
     return false
   end
 
+  def leader_of(group_id)
+    memberships.each do |membership|
+      if membership.group_id == group_id and membership.member_level == "Leader"
+        return true
+      end
+    end
+    return false
+  end
+
   def writable_categories
     categories = []
     Category.all.each do |category|
