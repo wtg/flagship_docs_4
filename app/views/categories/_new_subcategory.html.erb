@@ -6,11 +6,13 @@
       <%= f.label :name %> <br />
       <%= f.label :description %> <br />
       <%= f.label :featured? %> <br />
+      <%= f.label :group %> <br />
     </div>
     <div class="col-sm-4">
       <%= f.text_field :name %> <br />
       <%= f.text_field :description %> <br />
       <%= f.check_box :is_featured %> <br />
+      <%= f.select :group_id, @groups, selected: @category.group_id %> <br />
     </div>
   </div>
   <div class="row">

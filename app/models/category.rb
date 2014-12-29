@@ -20,7 +20,6 @@ class Category < ActiveRecord::Base
     # Set attributes based on parent category for consistency
     subcategory.is_private = parent_category.is_private
     subcategory.is_writable = parent_category.is_writable
-    subcategory.group_id = parent_category.group_id
 
     # Attempt to save our new subcategory
     return subcategory.save

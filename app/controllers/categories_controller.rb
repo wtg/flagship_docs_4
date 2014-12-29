@@ -17,6 +17,7 @@ class CategoriesController < ApplicationController
     # Get category and its subcategories
     @category = Category.find params[:id]
     @subcategories = @category.children.sort_by {|c| c.name}
+    @groups = Group.order(:name).all.map {|group| [group.name, group.id]}
     
     # Check if category is restricted to group members only
     if @category.is_private
@@ -122,6 +123,7 @@ class CategoriesController < ApplicationController
     end
 
     def subcategory_params
-      params.require(:category).permit(:name, :description, :is_featured, :parent_id)
+      params.require(:category).permit(:name, :description, 
+        :is_featured, :group_id, :parent_id)
     end
 end

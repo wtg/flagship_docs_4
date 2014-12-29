@@ -45,7 +45,7 @@ function loadCategoryTree() {
         getSubCategories(root);
         for (x in categories[root]) {
           console.log(categories[root][x]);
-          if (x < categories[root].length - 1) {
+          if (x < categories[root].length) {
             getSubCategories(categories[root][x]);
           }
         }
@@ -53,7 +53,7 @@ function loadCategoryTree() {
     }
   }
   // remove the menu state cookie 
-  document.cookie = "category_menu=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+  document.cookie = "category_menu=;";
 }
 
 $(document).ready(function(){ 
