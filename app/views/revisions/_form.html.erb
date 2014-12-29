@@ -5,7 +5,19 @@
 		<p> <b>Category:</b> <%= @document.category.name %> </p>
 		<p> <b>Uploaded by:</b> <%= current_user.full_name %> </p>
 
-	  <%= f.file_field :file %>
+		<% if @document.current_revision.file_upload? %> 
+			<hr />
+			<div class="form-group">
+				<%= f.label :file %>
+		  	<%= f.file_field :file %>
+		  </div>
+	  <% elsif @document.current_revision.external_link? %>
+	  	<hr />
+	  	<div class="form-group">
+		  	<%= f.label "External Link" %>
+	      <%= f.text_field :doc_link, placeholder: "https://docs.google.com/document/...", :class => "form-control" %>
+	    </div>
+	  <% end %>
 	  <br />
 
 	  <div class="modal-footer">
