@@ -49,24 +49,26 @@ class Revision < ActiveRecord::Base
   end
 
   def extract_text
-    # Create a temporary file to read from 
-    tempfile = Tempfile.new(file_name, :encoding => 'ascii-8bit')
-    tempfile.write(file_data)
-    tempfile.close
+    if file_upload?
+      # Create a temporary file to read from 
+      tempfile = Tempfile.new(file_name, :encoding => 'ascii-8bit')
+      tempfile.write(file_data)
+      tempfile.close
 
-    # Try extracting the contents of the file depending on the content type
-    begin
-      contents = Textractor.text_from_path(tempfile.path, :content_type => file_type)
-    rescue
-      logger.error("Unable to extract text from file.")
-      contents = nil
+      # Try extracting the contents of the file depending on the content type
+      begin
+        contents = Textractor.text_from_path(tempfile.path, :content_type => file_type)
+      rescue
+        logger.error("Unable to extract text from file.")
+        contents = nil
+      end
+      tempfile.unlink
+
+      # Get rid of utf-8 control characters and redundant line breaks
+      contents = contents.gsub(/\p{Cc}/, "").gsub(/\P{ASCII}/, "").gsub(/(\r?\n)+/,"\n") if !contents.blank?
+
+      update_column(:search_text, contents)
     end
-    tempfile.unlink
-
-    # Get rid of utf-8 control characters and redundant line breaks
-    contents = contents.gsub(/\p{Cc}/, "").gsub(/\P{ASCII}/, "").gsub(/(\r?\n)+/,"\n") if !contents.blank?
-
-    update_column(:search_text, contents)
   end
 
 
