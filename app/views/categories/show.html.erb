@@ -15,12 +15,17 @@
   <!-- Category Body -->
   <div class="panel-body">
     <!-- If the current user is a leader in the group that controls this category
-       then display a button for this user to add a new subcategory -->
+       then display a buttons for this user to add a new subcategory or edit the current subcategory -->
     <% if !current_user.nil? and !@category.group.nil? %>
       <% if current_user.is_admin? || @category.group.is_leader?(current_user) %>
-        <div id="new-subcategory-popover">
-          <button type="button" class="btn btn-primary btn-xs" data-container="#new-subcategory-popover" data-toggle="popover" data-placement="right" data-content="<%= "#{render 'new_subcategory'}" %>">
+        <div id="subcategory-form-popover">
+          <!-- Create new subcategory -->
+          <button type="button" class="btn btn-primary btn-xs" data-container="#subcategory-form-popover" data-toggle="popover" data-placement="right" data-content="<%= "#{render 'subcategory_form', category: Category.new, category_url: create_subcategory_category_path(params[:id]), title: "New Subcategory"}" %>">
             New Category
+          </button>
+          <!-- Edit current subcategory -->
+          <button type="button" class="btn btn-primary btn-xs" data-container="#subcategory-form-popover" data-toggle="popover" data-placement="right" data-content="<%= "#{render 'subcategory_form', category: @category, category_url: edit_category_path(params[:id]), title: "Edit Subcategory"}" %>">
+            Edit Category
           </button>
         </div>
         <hr />
