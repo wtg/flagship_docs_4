@@ -8,6 +8,10 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find_by_id params[:id]
+    @categories = @group.categories.order("name ASC").page(params[:page])
+    @documents = @group.documents.order("title ASC").page(params[:page])
+    @leaders = @group.leaders.page(params[:page])
+    @members = @group.members.page(params[:page])
   end
 
   def new

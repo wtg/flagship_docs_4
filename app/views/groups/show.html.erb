@@ -14,13 +14,14 @@
       </h3>
       <hr />
 
-      <% if @group.categories.length > 0 %>
+      <% if !@categories.empty? %>
+      <%= paginate @categories %>
       <div class="jumbotron">
         <h4> Categories </h4>
         <hr />
         <div class="container">
           <ul class="nav nav-pills">
-          <% @group.categories.each do |category| %>
+          <% @categories.each do |category| %>
             <li> 
               <%= link_to category do %>
                 <%= image_tag "icons/icon_folder_50.png" %> <%= category.name %>
@@ -32,30 +33,44 @@
       </div>
       <% end %>
 
-      <% if @group.leader_names.length > 0 %>
+      <% if !@leaders.empty? %>
+      <%= paginate @leaders %>
       <div class="jumbotron">
         <h4> Leaders </h4>
         <hr />
         <div class="container">
-          <%= @group.leader_names %>
+          <ul class="nav nav-pills">
+          <% @leaders.each do |leader| %>
+            <li>
+              <%= link_to leader.user.name, leader.user %>
+            </li>
+          <% end %>
+          </ul>
         </div>
       </div>
       <% end %>
 
-      <% if @group.member_names.length > 0 %>
+      <% if !@members.empty? %>
+      <%= paginate @members %>
       <div class="jumbotron">
         <h4> Members </h4>
         <hr />
         <div class="container">
-          <%= @group.member_names %>
+          <ul class="nav nav-pills">
+          <% @members.each do |member| %>
+            <li>
+              <%= link_to member.user.name, member.user %>
+            </li>
+          <% end %>
+          </ul>
         </div>
-      </div>
       <% end %>
 
-      <% if @group.documents.length > 0 %>
+      <% if !@documents. empty? %>
+        <%= paginate @documents %>
         <br />
         <h4> Documents Uploaded </h4>
-        <%= render partial: "documents/document_list_item", locals: {docs: @group.documents} %>
+        <%= render partial: "documents/document_list_item", locals: {docs: @documents} %>
       <% end %>
     </div>
   </div>

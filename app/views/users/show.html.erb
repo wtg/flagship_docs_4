@@ -46,9 +46,7 @@
         <h4> Documents Uploaded </h4> 
         <hr />
         <div class="container"> <%= paginate @documents %> </div>
-        <% @documents.each do |doc| %>
-          <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
-        <% end %>
+        <%= render partial: "documents/document_list_item", locals: {docs: @documents} %>
       </div>
     </div>
   </div>

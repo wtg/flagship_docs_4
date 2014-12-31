@@ -24,7 +24,7 @@
             New Category
           </button>
           <!-- Edit current subcategory -->
-          <button type="button" class="btn btn-primary btn-xs" data-container="#subcategory-form-popover" data-toggle="popover" data-placement="right" data-content="<%= "#{render 'subcategory_form', category: @category, category_url: edit_category_path(params[:id]), title: "Edit Subcategory"}" %>">
+          <button type="button" class="btn btn-primary btn-xs" data-container="#subcategory-form-popover" data-toggle="popover" data-placement="right" data-content="<%= "#{render 'subcategory_form', category: @category, category_url: category_path(params[:id]), title: "Edit Subcategory"}" %>">
             Edit Category
           </button>
         </div>

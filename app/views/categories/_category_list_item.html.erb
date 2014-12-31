@@ -1,8 +1,12 @@
-<% if category_viewable?(subcategory) %>
-  <div class="document-list-item unstyled-link">
-    <%= link_to category_path(subcategory, view_style:"list") do %>
-      <%= image_tag "icons/icon_folder_50.png" %>
-      <b><%= subcategory.name.truncate(16) %></b>
+<table class="table table-list-items">
+  <% subcategories.each do |subcategory| %>
+    <% if category_viewable?(subcategory) %>
+      <tr class="list-item" href="<%= category_path(subcategory, view_style: "list") %>">
+        <td> 
+          <%= image_tag "icons/icon_folder_50.png" %>
+          <b> <%= subcategory.name %> </b>
+        </td>
+      </tr>
     <% end %>
-  </div>
-<% end %>
+  <% end %>
+</table>
