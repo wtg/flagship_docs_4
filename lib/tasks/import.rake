@@ -18,9 +18,41 @@
 ##
 namespace :import_rails2 do
 
+  ## 
+  # Mapping code and concept courtesy of (@bamnet) https://github.com/bamnet 
+  # https://github.com/concerto/concerto/commits/master/lib/tasks/import.rake?author=bamnet
+  ## 
+  def load_mapping(object, filename="mapping.csv")
+    require 'csv'
+    mapping = {}
+    # Iterate through each row of the mapping csv
+    #  only storing the requested object's mapping (ex: user, group, document, etc.)
+    CSV.foreach(filename) do |row|
+      obj, old_id, new_id = row
+      if obj != object
+        # requested object mapping does not match this row
+        next
+      else
+        # store the requested object's new id using the old id as a key
+        mapping[old_id.to_i] = new_id.to_i
+      end
+    end
+    return mapping
+  end
+
+  def save_mapping(object, mapping, filename="mapping.csv")
+    require 'csv'
+    # Save each mapping between legacy id and newly created object id
+    CSV.open(filename, 'ab') do |csv|
+      mapping.each do |old_id, new_id|
+        csv << [object, old_id, new_id]
+      end
+    end
+  end
+
   def load_parse_yaml(name)
     begin
-      # Load YAML file containing Rails 2 Data from db folder
+      # Load YAML file containing Rails 2 data from db folder
       legacy_yaml = YAML.load_file(Rails.root + "db/#{name}.yml")
       return legacy_yaml
     rescue Exception => e
@@ -56,6 +88,35 @@ namespace :import_rails2 do
         puts "[ERROR] Unable to save user: #{user["username"]}"
       end
     end
+    # Save user mappings ['user', old_id, new_id]
+    save_mapping('user', mapping)
+  end
+
+  desc 'Import Rails 2 Legacy Groups.'
+  task groups: :environment do
+    require 'yaml'
+    legacy_db = load_parse_yaml("rails2_groups")
+    # Map legacy group id to new created group id
+    mapping = {}
+
+    legacy_db.each do |group| 
+      # Build new group with the imported yaml data
+      new_group = Group.new(
+        name: group["name"],
+        updated_at: group["updated_at"],
+        created_at: group["created_at"]
+        )
+      if new_group.save
+        # Successfully saved our new group to the Flagship 4 database
+        mapping[group["id"]] = new_group.id
+        puts "[SUCCESS] Created group: #{group["name"]}: #{new_group.id}"
+      else
+        # Error: unable to save this record
+        puts "[ERROR] Unable to save group: #{group["name"]}"
+      end
+    end
+    # Save group mappings ['group', old_id, new_id]
+    save_mapping('group', mapping)
   end
   
 end
