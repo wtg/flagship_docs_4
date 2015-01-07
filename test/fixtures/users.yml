@@ -4,8 +4,34 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+admin_user:
+  username: admin
+  email: admin@rpi.edu
+  full_name: admin user
+  is_admin: true
+
+basic_user:
+  username: basic
+  email: basic@rpi.edu
+  full_name: basic user
+  is_admin: false
+
+group_leader: 
+  username: leader
+  email: leader@rpi.edu
+  full_name: group leader
+  is_admin: false
+
+group_member: 
+  username: member
+  email: member@rpi.edu
+  full_name: group member
+  is_admin: false
+
+<% 1000.times do |n| %>
+user_<%= n %>:
+  username: <%= "user_#{n}" %>
+  email: <%= "user_#{n}@rpi.edu" %>
+  full_name: <%= "user #{n}" %>
+  is_admin: false
+<% end %>
