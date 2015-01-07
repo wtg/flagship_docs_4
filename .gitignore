@@ -17,3 +17,9 @@
 
 # Ignore solr files
 /solr/*
+
+# Ignore database yml config
+/config/database.yml
+
+# Ignore test legacy yml database seed files
+/db/rails2_users.yml

@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  validates :username, uniqueness: true
+
   has_many :documents, dependent: :destroy
   has_many :revisions, dependent: :destroy
   has_many :memberships, dependent: :destroy
