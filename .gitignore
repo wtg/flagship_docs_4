@@ -23,3 +23,10 @@
 
 # Ignore test legacy yml database seed files
 /db/rails2_users.yml
+/db/rails2_groups.yml
+
+# Ignore mapping csv files from import tasks
+/mapping.csv
+
+# Ignore external Polymer components
+/vendor/assets/components/*
