@@ -1,0 +1,21 @@
+{
+  "name": "flagship_docs_4",
+  "version": "0.0.1",
+  "homepage": "https://github.com/wtg/flagship_docs_4",
+  "authors": [
+    "gbprz <perez283@gmail.com>"
+  ],
+  "description": "Ruby on Rails Document Management System",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.4"
+  }
+}

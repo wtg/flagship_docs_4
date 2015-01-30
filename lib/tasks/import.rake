@@ -62,6 +62,9 @@ namespace :import_rails2 do
     end
   end
 
+  ##
+  # Task to import users from a Rails 2 to Rails 4 deployment
+  ##
   desc 'Import Rails 2 Legacy Users.'
   task users: :environment do 
     require 'yaml'
@@ -92,6 +95,9 @@ namespace :import_rails2 do
     save_mapping('user', mapping)
   end
 
+  ##
+  # Task to import groups from a Rails 2 to Rails 4 deployment
+  ##
   desc 'Import Rails 2 Legacy Groups.'
   task groups: :environment do
     require 'yaml'
