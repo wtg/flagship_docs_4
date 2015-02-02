@@ -1,16 +1,13 @@
-<!-- Document upload button & modal -->
-<%= render partial: "documents/upload" %>
-
 <!-- Category list -->
-<ul style="list-style-type: none; padding-left: 15px;" class="categories_nav" >
+<ul class="categories-nav" >
   <% categories.each do |root| %>
     <!-- Show root categories -->
-    <li style="display:block-inline" value="root" class="<%= "cat-#{root.id}"%>" >
-      <i class="fa fa-caret-right fa-lg" onclick="getSubCategories(<%= root.id %>)"></i>
-      <div class="category_nav_name"> 
+    <paper-item>
+      <li value="root" class="<%= "cat-#{root.id}"%>" >
+        <i class="fa fa-caret-right fa-lg" onclick="getSubCategories(<%= root.id %>)"></i>
         <%= link_to root.name, category_path(root, view_style: "grid"), onclick: "storeCategoryTree();", "data-no-turbolink" => true %>
-      </div>
-    </li>
+      </li>
+    </paper-item>
     <br />
   <% end %>
 </ul>

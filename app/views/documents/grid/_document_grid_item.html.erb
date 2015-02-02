@@ -1,0 +1,10 @@
+<% if can_view_document(doc) %>
+  <section vertical layout>
+    <div class="grid-item">
+      <%= link_to doc do %>
+        <%= image_tag "icons/#{document_icon(doc.current_revision.extension_type)}" %>
+        <%= doc.title %>
+      <% end %>
+    </div>
+  </section>
+<% end %>

@@ -1,22 +1,11 @@
 // Place all the styles related to the documents controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-.document_actions {
-  text-align: center;
-}
-
-.document_show {
-  margin-left: 300px;
-  position:  relative;
-  text-align: center;
-}
-
-.list-item {
-  &:hover {
-    background-color: #C2D6FF;
-    cursor: pointer;
+.view-style {
+  float: right;
+  padding: 15px;
+  a {
+    color: #282828;
+    text-decoration: none;
   }
-  height: 100%;
-  width: 100%;
 }

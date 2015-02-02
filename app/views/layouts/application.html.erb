@@ -3,28 +3,28 @@
   <head>
     <title>Flagship Docs</title>
     <%= favicon_link_tag 'favicon.ico' %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
-    <%= html_import_tag "application", "data-turbolinks-track" => true %>
+    <%= html_import_tag "application", "data-turbolinks-track" => false %>
     <%= csrf_meta_tags %>
   </head>
-  <body>
-    <div class="row header">
-      <%= render partial: "layouts/header" %>
-    </div>
-    <div class="row">
-      <%= render partial: "layouts/messages" %>
-    </div>
-    <div class="row">
-      <div class="col-md-2">
-        <%= render partial: "categories/categories_nav.html.erb", locals: {categories: Category.roots.sort_by {|c| c.name}} %>
-      </div>
-      <div class="col-md-9">
-        <%= yield %>
-      </div>
-    </div>
-    <div class="row">
-      
-    </div>
+  <body unresolved>
+    <core-header-panel>
+      <core-toolbar>
+        <%= render partial: "layouts/header" %>
+        <%= render partial: "layouts/messages" %>
+      </core-toolbar>
+      <core-animated-pages transitions="cross-fade-all hero-transition">
+        <core-drawer-panel horizontal layout>
+          <div drawer class="category-tree"> 
+            <%= render partial: "categories/categories_nav", locals: {categories:  Category.roots.sort_by {|c| c.name}} %>
+          </div>
+          <core-splitter direction="left"></core-splitter>
+          <div main class="main-panel">
+            <%= yield %>
+          </div>
+        </core-drawer-panel>
+      </core-animated-pages>
+    </core-header-panel>
   </body>
 </html>

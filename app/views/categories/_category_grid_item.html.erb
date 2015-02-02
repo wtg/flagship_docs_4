@@ -1,7 +1,7 @@
 <% if category_viewable?(subcategory) %>
-  <div class="col-xs-6 col-md-3">
+  <div class="grid-item">
     <%= link_to category_path(subcategory, view_style: "grid"), 
-                :class => "thumbnail" do %>
+                :class => "unstyled-link" do %>
       <%= image_tag "icons/icon_folder.png" %>
       <%= subcategory.name %>
     <% end %>

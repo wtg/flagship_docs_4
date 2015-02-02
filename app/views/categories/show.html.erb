@@ -1,42 +1,6 @@
-<!-- Category Header -->
-<div class="panel panel-default">
-  <!-- Previous category breadcrumb navigation -->
-  <ol class="breadcrumb">
-    <% if !@category.ancestors.nil? %>
-      <% @category.ancestors.reverse.each do |cat| %>
-        <li> <%= link_to cat.name, cat %> </li>
-      <% end %>
-    <% end %>
-    <li class="active"> <%= @category.name %> </li>
-    <!-- Category view style selector -->
-    <%= render partial: "documents/documents_view_style" %>
-  </ol>
-
-  <!-- Category Body -->
-  <div class="panel-body">
-    <!-- If the current user is a leader in the group that controls this category
-       then display a buttons for this user to add a new subcategory or edit the current subcategory -->
-    <% if !current_user.nil? and !@category.group.nil? %>
-      <% if current_user.is_admin? || @category.group.is_leader?(current_user) %>
-        <div id="subcategory-form-popover">
-          <!-- Create new subcategory -->
-          <button type="button" class="btn btn-primary btn-xs" data-container="#subcategory-form-popover" data-toggle="popover" data-placement="right" data-content="<%= "#{render 'subcategory_form', category: Category.new, category_url: create_subcategory_category_path(params[:id]), title: "New Subcategory"}" %>">
-            New Category
-          </button>
-          <!-- Edit current subcategory -->
-          <button type="button" class="btn btn-primary btn-xs" data-container="#subcategory-form-popover" data-toggle="popover" data-placement="right" data-content="<%= "#{render 'subcategory_form', category: @category, category_url: category_path(params[:id]), title: "Edit Subcategory"}" %>">
-            Edit Category
-          </button>
-        </div>
-        <hr />
-      <% end %>
-    <% end %>
-
-    <!-- Category Documents and Subcategories in requested view format -->
-    <% if @view_style == "grid" %>
-      <%= render partial: "documents/documents_grid" %>
-    <% else %>
-      <%= render partial: "documents/documents_list" %>
-    <% end %>
-  </div>
-</div>
+<!-- Category Documents and Subcategories in requested view format -->
+<% if @view_style == "grid" %>
+  <%= render partial: "documents/grid/documents_grid" %>
+<% else %>
+  <%= render partial: "documents/list/documents_list" %>
+<% end %>
