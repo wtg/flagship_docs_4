@@ -1,106 +1,57 @@
 // Place all the styles related to the categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-.page {
-  margin-left: 10px;
-}
-
-.banner {
-  padding-right: 100px;
-}
-
-.unstyled-link {
-  a {
-    text-decoration: none;
-    color: black;
-    &:hover {
+.categories-nav {
+  list-style-type: none;
+  padding-left: 0px;
+  li {
+    i {
+      padding: 2px;
+      display: block-inline;
+      &:hover {
+        background-color: #F0F0F0;
+      }
+    } 
+    a {
+      padding: 2px;
+      display: block-inline;
       text-decoration: none;
-      color: black;
+      color: #000000;
+      &:hover {
+        background-color: #F0F0F0;
+      }
     }
   }
 }
 
-.categories_nav {
-  a {
-    text-decoration: none;
-    color: black;
-    padding: 5px;
-    &:hover {
-      text-decoration: none;
-      color: black;
-      background: #E6E6E6;
-    }
+.categories-form {
+  margin: 25px;
+}
+
+.grid-scroll {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.grid-item {
+  margin: 5px;
+  padding-top: 5px;
+  text-align: center;
+  position: relative;
+  width: 175px;
+  height: 175px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  &:hover {
+    box-shadow: 1px 1px 1px #282828;
+    background-color: #F0F0F0;
+    border-radius: 3px;
   }
-  i {
-    padding: 4px;
-    &:hover {
-      background: #E6E6E6;
-    }
+  .grid-item-img {
+    display: block-inline;
   }
-}
-
-.category_nav_name {
-  display: inline;
-  font-size: 15px;
-}
-
-.footer {
-  margin: 0px;
-  padding: 0px;
-  bottom: 0;
-  position: absolute;
-  font-size: 11px;
-  align: center;
-}
-
-.documents_grid {
-  float: left;
-  width: 100%;
-}
-
-.upload_button_container{
-
-  .upload_button {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    background-color: #4285f4;
-    border-radius: 0px;
-    box-shadow: 2px 2px 1px #0A0A0A;
-    text-align: center;
-    width: 100px;
-    height: 35px;
-    line-height: 35px;
-    color: white;
-    &:hover {
-      background-color: #29516D;
-      text-decoration: none;
-      color: white;
-    }
-    .upload_button_text {
-      padding: 5px;
-    }
-  }
-}
-
-.category_btn {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  .category_text {
-    padding: 5px 5px 5px 5px;
-    background-color: #708EA4;
-    color: #FFFFFF;
-    border-radius: 2px;
-  }
-  a {
-    color: white;
-  }
-}
-
-#subcategory-form-popover {
-  margin: 20px;
-  .popover {
-    width: 350px;
+  .grid-item-name {
+    display: block-inline;
+    padding: 2px;
   }
 }

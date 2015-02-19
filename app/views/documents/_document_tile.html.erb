@@ -1,8 +1,0 @@
-<% if can_view_document(doc) %>
-  <div class="col-xs-6 col-md-3">
-    <%= link_to doc, :class => "thumbnail" do %>
-      <%= image_tag "icons/#{document_icon(doc.current_revision.extension_type)}" %>
-      <%= doc.title %>
-    <% end %>
-  </div>
-<% end %>

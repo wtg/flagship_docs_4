@@ -1,42 +1,28 @@
-<div class="panel panel-default">
-  <ol class="breadcrumb">
-    <li><%= link_to "Home", categories_path %></li>
-    <li class="active">Groups Index</li>
-    <div class="pull-right">
-      <%= link_to "New Group", new_group_path, :class => "btn btn-primary btn-xs" %>
-    </div>
-  </ol>
-
-  <div class="panel-body">
-    <div class="container">
-      <div class="row"> <%= paginate @groups %> </div>
-      <table class="table">
-        <tr>
-          <th> Group Name </th>
-          <th> Leaders </th>
-          <th> Members </th>
-          <th> Actions </th>
-        </tr>
-        <% @groups.each do |group| %>
-          <tr>
-            <td> <%= link_to group.name, group_path(group) %> </td>
-            <td> 
-              <% if group.leaders.length > 0 %>
-                <%= group.leader_names %>
-              <% end %>
-            </td>
-            <td> 
-              <% if group.members.length > 0 %>
-                <%= group.member_names %> 
-              <% end %>
-            </td>
-            <td> 
-              <%= link_to "Edit", edit_group_path(group), :class => "btn btn-primary btn-xs" %>
-              <%= link_to "Delete", group_path(group), method: :delete, :class => "btn btn-primary btn-xs" %>
-            </td>
-          </tr>
+<div class="row"> <%= paginate @groups %> </div>
+<table class="table">
+  <tr>
+    <th> Group Name </th>
+    <th> Leaders </th>
+    <th> Members </th>
+    <th> Actions </th>
+  </tr>
+  <% @groups.each do |group| %>
+    <tr>
+      <td> <%= link_to group.name, group_path(group) %> </td>
+      <td> 
+        <% if group.leaders.length > 0 %>
+          <%= group.leader_names %>
         <% end %>
-      </table>
-    </div>
-  </div>
-</div>
+      </td>
+      <td> 
+        <% if group.members.length > 0 %>
+          <%= group.member_names %> 
+        <% end %>
+      </td>
+      <td> 
+        <%= link_to "Edit", edit_group_path(group), :class => "btn btn-primary btn-xs" %>
+        <%= link_to "Delete", group_path(group), method: :delete, :class => "btn btn-primary btn-xs" %>
+      </td>
+    </tr>
+  <% end %>
+</table>

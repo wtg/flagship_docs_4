@@ -1,20 +1,21 @@
-<% if !@featured.nil? and !@featured.values.all? {|docs| docs.empty?} %>
-  <div class="panel panel-default">
-    <ol class="breadcrumb">
-      <h4> Featured Categories </h4>
-    </ol>
-    <div class="panel-body">
-      <%= render partial: "featured_categories", locals: {featured: @featured} %>
+<section vertical layout>
+  <div class="grid-scroll" fit>
+    <% if !@featured.nil? and !@featured.values.all? {|docs| docs.empty?} %>
+      <h1 class="header">
+        Featured Categories 
+      </h1>
+      <div class="grid-view" flex horizontal wrap around-justified layout cross-fade>
+        <%= render partial: "categories/featured/featured_categories", locals: {featured: @featured} %>
+      </div>
+    <% end %>
+
+    <h1 class="header">
+      Browse Categories
+    </h1> 
+    <div class="grid-view" flex horizontal wrap around-justified layout cross-fade>
+      <% @categories.each do |cat| %>
+        <%= render partial: "categories/category_grid_item", locals: {subcategory: cat} %>
+      <% end %>
     </div>
   </div>
-<% end %>
-<div class="panel panel-default">
-  <ol class="breadcrumb">
-    <h4> Browse Categories </h4>
-  </ol>
-  <div class="panel-body">
-    <% @categories.each do |cat| %>
-      <%= render partial: "categories/category_tile", locals: {subcategory: cat} %>
-    <% end %>
-  </div>
-</div>
+</section>

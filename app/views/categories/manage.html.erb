@@ -1,23 +1,14 @@
-<div class="panel panel-default">
-  <ol class="breadcrumb">
-    <li><%= link_to "Home", categories_path %></li>
-    <li class="active">Manage Categories</li>
-  </ol>
-
-  <div class="panel-body">
-    <table class="table">
-      <tr>
-        <th> Category name </th>
-        <th> Group </th>
-        <th> Parent </th>
-        <th> Featured? </th>
-        <th> Private? </th>
-        <th> Actions </th>
-      </tr>
-      <div style="margin-left: 26px"><%= paginate @categories %></div>
-      <% @categories.each do |cat| %>
-        <%= render partial: "manage_row", locals: {cat: cat} %>
-      <% end %>
-    </table>
-  </div>
-</div>
+<table class="table">
+  <tr>
+    <th> Category name </th>
+    <th> Group </th>
+    <th> Parent </th>
+    <th> Featured? </th>
+    <th> Private? </th>
+    <th> Actions </th>
+  </tr>
+  <div style="margin-left: 26px"><%= paginate @categories %></div>
+  <% @categories.each do |cat| %>
+    <%= render partial: "manage_row", locals: {cat: cat} %>
+  <% end %>
+</table>

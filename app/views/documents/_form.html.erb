@@ -1,59 +1,52 @@
-<div class="modal-body">
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, :class => "form-control" %>
+<paper-input-decorator label="title">
+  <%= f.text_field :title %>
+</paper-input-decorator>
+
+<paper-input-decorator label="description">
+  <%= f.text_field :description %>
+</paper-input-decorator>
+
+<core-label horizontal layout>
+  <paper-checkbox>
+    <%= f.check_box :is_private, checked: false %>
+  </paper-checkbox>
+  <div vertical layout>
+    <h4> Make Private </h4>
+    <div> Checking this will hide the document from non-group members.</div>
   </div>
-  <br />
+</core-label>
 
-  <div class="form-group">
-    <%= f.label :description %>
-    <%= f.text_field :description, :class => "form-control" %>
+<core-label horizontal layout>
+  <paper-checkbox>
+    <%= f.check_box :is_writable, checked: false %>
+  </paper-checkbox>
+  <div vertical layout>
+    <h4> Everyone Can Edit </h4>
+    <div> Checking this box allows non-group members to revise this document. </div>
   </div>
-  <br />
+</core-label>
 
-  <div class="form-group">
-    <%= f.label "Make Private", :style => "display: inline-block" %>
-    <%= f.check_box :is_private, :style => "display: inline-block", checked: false %>
-    <br />
-    <span style="font-size: 10px"> Checking this will hide the document from non-group members.</span>
-  </div>
+<%= f.hidden_field :category_id, value: @category.id %>
 
-  <div class="form-group">
-    <%= f.label "Everyone Can Edit", :style => "display: inline-block"%>
-    <%= f.check_box :is_writable, :style => "display: inline-block", checked: false %>
-    <br />
-    <span style="font-size: 10px"> Checking this box allows non-group members to revise this document.</span>
-  </div>
+<!-- Upload file for document creation, hide for document editing -->
+<% if include_revision %>
+  <%= f.fields_for :revision do |rev| %>
+  <core-label horizontal layout>
+    <paper-input-decorator label="file">
+      <%= rev.file_field :file %>
+    </paper-input-decorator>
 
-  <br />
+    <core-item>
+      or
+    </core-item>
 
-  <!-- Category the document is uploaded to -->
-  <%= f.hidden_field :category_id, value: @category.id %>
-
-  <!-- Upload file for document creation, hide for document editing -->
-  <% if include_revision %>
-    <hr />
-    <%= f.fields_for :revision do |rev| %>
-      <div class="row">
-        <div class="col-md-5">
-          <%= f.label :file %>
-          <%= rev.file_field :file %>
-        </div>
-        <div class="col-md-1">
-          <br>
-          <small><b> or </b></small>
-        </div>
-        <div class="col-md-6" style="display: inline">
-          <%= rev.label "External Link" %>
-          <%= rev.text_field :doc_link, placeholder: "https://docs.google.com/document/...", :class => "form-control" %>
-        </div>
-      </div>
-    <% end %>
+    <paper-input-decorator label="external link">
+      <%= rev.text_field :doc_link, placeholder: "https://docs.google.com/document/..." %>
+    </paper-input-decorator>
+  </core-label>
   <% end %>
+<% end %>
 
-</div>
-
-<div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-  <%= f.submit "Submit Document", :class => "btn btn-default" %>
-</div>
+<paper-button class="hover" raised hover role="submit">
+  <button> submit document </button>
+</paper-button>

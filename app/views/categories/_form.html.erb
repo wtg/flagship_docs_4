@@ -1,26 +1,31 @@
-<div class="col-md-6">
-  <div class="row">
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, :class => "form-control"%>
-    </div>
-    <br />
-    <div class="form-group">
-      <%= f.label :description %>
-      <%= f.text_field :description, :class => "form-control" %>
-    </div>
+<div class="categories-form">
+  <paper-input-decorator label="name" floatingLabel layout vertical> 
+    <%= f.text_field :name %>
+  </paper-input-decorator>
+  <paper-input-decorator label="description">
+    <%= f.text_field :description, :class => "form-control" %>
+  </paper-input-decorator>
+
+  <paper-item>
     <%= f.label :owning_group %>
     <%= f.select :group_id, @groups, {include_blank: true} %>
-    <br />
+  </paper-item>
+  
+  <paper-item>
     <%= f.label :is_private %>
     <%= f.check_box :is_private %>
-    <br />
+  </paper-item>
+
+  <paper-item>
     <%= f.label :is_writable %>
     <%= f.check_box :is_writable %>
-    <br />
+  </paper-item>
+  
+  <paper-item>
     <%= f.label :is_featured %>
     <%= f.check_box :is_featured %>
-    <br />
-    <%= f.submit %>
-  </div>
+  </paper-item>
+
+  <br />
+  <%= f.submit %>
 </div>

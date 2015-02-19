@@ -1,9 +1,0 @@
-<div style="margin-left: 26px"> <%= paginate @documents %> </div>
-  <% if @subcategories %>
-    <!-- Show a tile for each subcategory -->
-    <%= render partial: "categories/category_list_item", locals: {subcategories: @subcategories} %>
-  <% end %>
-  <% if @documents %>
-    <%= render partial: "documents/document_list_item", locals: {docs: @documents} %>
-  <% end %>
-</div>

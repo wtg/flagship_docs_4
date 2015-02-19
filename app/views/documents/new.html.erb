@@ -1,0 +1,20 @@
+<div class="upload-form">
+  <!-- Check if a user is logged in -->
+  <% if !current_user.nil? and !@category.nil? %>
+    <h1 class="header">
+      Document Upload <%= " - #{@category.name}" if !@category.nil? %>
+    </h1>
+    <%= form_for Document.new, html: { multipart: true }, url: documents_path, method: :post do |f| %>
+      <%= render partial: "documents/form", locals: {f: f, include_revision: true} %>
+    <% end %>
+  <% elsif current_user.nil? %>
+    Please
+    <%= link_to "sign in", "/auth/cas" %>
+    to upload documents!
+  <% elsif %>
+    Select a category on the left to begin uploading documents! 
+  <% else %>
+    An unknown error has occured. Please contact a site administrator
+    for more details.
+  <% end %>
+</div>

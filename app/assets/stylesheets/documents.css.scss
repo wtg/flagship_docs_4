@@ -2,21 +2,53 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.document_actions {
-  text-align: center;
-}
-
-.document_show {
-  margin-left: 300px;
-  position:  relative;
-  text-align: center;
-}
-
-.list-item {
-  &:hover {
-    background-color: #C2D6FF;
-    cursor: pointer;
+.upload-form {
+  margin: 25px;
+  .header {
+    margin-left: 0px;
+    font-size: 24px;
   }
-  height: 100%;
-  width: 100%;
+  core-item {
+    padding: 0px 50px 0px 50px;
+  }
+  core-label {
+    margin: 20px 0px 20px 0px;
+  }
+  paper-checkbox {
+    padding: 20px 20px 20px 0px;
+  }
+  paper-button {
+    margin-left: 0px;
+    background-color: #3B78DC;
+    button {
+      color: white;
+      padding: 0em;
+      background-color: transparent;
+      border-color: transparent;
+      border: 0;
+    }
+  }
+}
+
+.constrained-height {
+  height: 500px;
+}
+
+.upload-container {
+  margin-top: 50px;
+  text-align: center;
+  .upload {
+    color: white;
+    background-color: #4285f4;
+    box-shadow: 1px 1px 1px #282828;
+  }
+}
+
+.view-style {
+  float: right;
+  padding: 15px;
+  a {
+    color: #282828;
+    text-decoration: none;
+  }
 }

@@ -6,7 +6,7 @@
       <% else %>
         <h4> <%= "#{category.root.name} - #{category.name}" %> </h4> 
       <% end %>
-      <%= render partial: "documents/document_list_item", locals: {docs: docs} %>
+      <%= render partial: "documents/list/document_list_item", locals: {docs: docs} %>
     </div>
   <% end %>
 <% end %>

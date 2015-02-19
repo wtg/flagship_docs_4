@@ -1,9 +1,0 @@
-<% if category_viewable?(subcategory) %>
-  <div class="col-xs-6 col-md-3">
-    <%= link_to category_path(subcategory, view_style: "grid"), 
-                :class => "thumbnail" do %>
-      <%= image_tag "icons/icon_folder.png" %>
-      <%= subcategory.name %>
-    <% end %>
-  </div>
-<% end %>

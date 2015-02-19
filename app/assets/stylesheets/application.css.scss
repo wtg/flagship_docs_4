@@ -15,192 +15,68 @@
  *= require_self
  */
 
-/* Bootstrap Variable Overrides */
-/* ---------------------------- */
-/* ---------------------------- */
-
-$btn-default-bg: #4285f4;
-$btn-default-border: #4285f4;
-$btn-default-color: #FFFFFF; 
-$btn-danger-color: #FFFFFF;
-
-$navbar-default-bg: #000000;
-$navbar-default-link-color: #FFFFFF;
-$navbar-default-link-hover-color: #0066FF;
-$navbar-default-link-hover-bg: #FFFFFF;
-$navbar-default-link-active-bg: #FFFFFF;
-
-$dropdown-link-hover-color: #0066FF;
-
-$breadcrumb-bg: #333333;
-$panel-default-border: #333333;
-$panel-border-radius: 0px;
-
-$nav-pills-active-link-hover-bg: #4285f4;
-/* ---------------------------- */
-/* ---------------------------- */
-
-@import "bootstrap";
-@import "bootstrap/theme";
-
-/* Element styles */
-body {
-  padding-top: 85px;
+/* Page elements */
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: #E5E5E5;
+  font-family: 'RobotoDraft', sans-serif;
 }
 
-div {
-  user-select: none;
+/* Navigation */
+core-header-panel {
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
-
-footer {
-  background: #5C5C5C;
-  font-size: 14px;
+core-toolbar {
+  background: #3B78DC;
+  color: white;
 }
-
-input[type=search], input[type=text] {
-  border-radius: 0px;
-}
-
-/* Bootstrap class overrides */
-.alert {
-  margin-left: 0px;
-  border-radius: 0px;
-}
-
-.btn-default {
-  border-radius: 0px;
-  border: 1px solid #4285f4;
-  &:hover {
-    background: #254C8B;
-    border: 1px solid #254C8B;
+.search {
+  width: 30%;
+  paper-input-decorator {
+    input {
+      text-overflow: ellipsis;
+    }
   }
 }
-
-.btn-danger {
-  border-radius: 0px;
-  border-color: #CCCCCC;
+.navbar-header {
+  color: white;
+  text-decoration: none;
 }
-
-.breadcrumb {
-  margin: 0px;
-  color: #FFFFFF;
-  h3 {
-    margin: 0px;
-    padding: 15px;
-    color: #FFFFFF;
-  }
-  border-radius: 0px;
-
-  .active { 
-    color: #FFFFFF;
-  }
-
-  li {
+.menu {
+  color: #000000;
+  paper-item {
     a {
-      color: #428bca;
+      padding: 4px;
+      color: #000000;
       text-decoration: none;
       &:hover {
+        background-color: #282828;
         color: #FFFFFF;
       }
     }
   }
 }
 
-.modal-header {
-  background: #333333;
-  h4 {
-    color: #FFFFFF;
-  }
-  button {
-    span {
-      color: #FFFFFF;
-      &:hover {
-        color: #FFFFFF;
-      }
-    }
+/* Split page */
+.category-tree {
+  .category-tree-scroll {
+    overflow-y: auto;
+    height: 100%;
   }
 }
-
-.navbar {
-  padding-top: 5px;
-  .container-fluid {
-    a {
-      h3 {
-        color: #FFFFFF;
-      }
-    }
-  }
+.main-panel {
+  background-color: #FFFFFF;
 }
 
-.nav-stacked {
-  li {
-    a:hover {
-      background: #C2D6FF;
-    }
-  }
+/* General */
+.unstyled-link {
+  color: #000000;
+  text-decoration: none;
 }
-
-.panel {
-  border: none;
-}
-
-.panel-default {
-  .panel-heading {
-    color: white;
-    background-color: #333333;
-    background-image: none;
-  }
-}
-
-.panel-body {
-  padding: 0px 0px 10px 5px;
-}
-
-.popover {
-  max-width: none;
-}
-
-.table {
-  table-layout:fixed;
-}
-
-.table-list-items {
-  td {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: clip;
-  }
-  tbody {
-    tr {
-      td {
-        border: 0px;
-      }
-    }
-  }
-}
-
-.thumbnail {
-  /* used for document tile */
-  width: 225px;
-  height: 180px;
-
-  color: black;
-  border: none;
-  border-radius: none;
-  box-shadow: none;
-  margin: 5px;
-  text-align: center;
-  text-overflow: ellipsis;
-  overflow-y: hidden;
-  overflow-x: hidden;
-
-  &:hover {
-    color: #000000;
-    background-color: #C2D6FF;
-    border-right: 1px solid #333333;
-    border-bottom: 1px solid #333333;
-    border-radius: 0px;
-    box-shadow: 3px 2px 2px #333333;
-    text-decoration: none;
-  }
+.header {
+  margin-left: 25px;
+  font-size: 24px;
 }
