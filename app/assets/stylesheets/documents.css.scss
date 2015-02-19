@@ -1,6 +1,49 @@
 // Place all the styles related to the documents controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.upload-form {
+  margin: 25px;
+  .header {
+    margin-left: 0px;
+    font-size: 24px;
+  }
+  core-item {
+    padding: 0px 50px 0px 50px;
+  }
+  core-label {
+    margin: 20px 0px 20px 0px;
+  }
+  paper-checkbox {
+    padding: 20px 20px 20px 0px;
+  }
+  paper-button {
+    margin-left: 0px;
+    background-color: #3B78DC;
+    button {
+      color: white;
+      padding: 0em;
+      background-color: transparent;
+      border-color: transparent;
+      border: 0;
+    }
+  }
+}
+
+.constrained-height {
+  height: 500px;
+}
+
+.upload-container {
+  margin-top: 50px;
+  text-align: center;
+  .upload {
+    color: white;
+    background-color: #4285f4;
+    box-shadow: 1px 1px 1px #282828;
+  }
+}
+
 .view-style {
   float: right;
   padding: 15px;

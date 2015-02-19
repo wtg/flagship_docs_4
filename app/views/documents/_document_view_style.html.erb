@@ -7,4 +7,15 @@
   <% end %>
 </div>
 
-<h1 class="header"> <%= @category.name %> </h1>
+<h1 class="header"> 
+  <% if !@category.parent.nil? %>
+    <%= link_to @category.parent, :class => "unstyled-link" do %>
+      <i class="fa fa-chevron-left"></i>
+    <% end %>
+  <% else %>
+    <%= link_to "/", :class => "unstyled-link" do %>
+      <i class="fa fa-chevron-left"></i>
+    <% end %>
+  <% end %>
+  <%= @category.name %> 
+</h1>

@@ -56,15 +56,13 @@ module Permissions
     end
   end
 
-=begin
   # Check if the current user can upload documents to the specified category
   def upload_permitted_categories
     # Return all categories the current user can upload to
     return nil if current_user.nil?
-    permitted_categories = Category.all if current_user.is_admin?
+    permitted_categories = Category.order(:name).all if current_user.is_admin?
     permitted_categories ||= current_user.writable_categories
   end
-=end
 
   # ====================
   # Document Permissions

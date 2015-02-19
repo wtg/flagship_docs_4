@@ -6,7 +6,7 @@ function storeCategoryTree() {
 
   // iterate through each category, creating an object to 
   //  store category's state information 
-  $('.categories_nav > li').each(function() {
+  $('.categories-nav > paper-item > li').each(function() {
     var root_id = $(this).attr("class").replace("cat-", "");
 
     categories[root_id] = [];
@@ -41,10 +41,8 @@ function loadCategoryTree() {
     categories = JSON.parse(categories);
     for (root in categories) {
       if (categories[root].length > 0 ) {
-        console.log(root);
         getSubCategories(root);
         for (x in categories[root]) {
-          console.log(categories[root][x]);
           if (x < categories[root].length) {
             getSubCategories(categories[root][x]);
           }

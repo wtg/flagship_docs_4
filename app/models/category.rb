@@ -50,6 +50,10 @@ class Category < ActiveRecord::Base
     nodes
   end
 
+  def ancestors_with_names
+    ancestors.map! {|category| category.name}
+  end
+
   # Collect a list of children categories
   # Each category the monkey could stop by as he climbs down a tree
   # Compliments of http://github.com/funkensturm/acts_as_category

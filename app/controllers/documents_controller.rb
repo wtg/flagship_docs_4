@@ -45,6 +45,10 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def new
+    @category = Category.find params[:category_id] if !params[:category_id].nil?
+  end
+
   def create
     if !revision_params.nil?
       # Create our new document

@@ -30,7 +30,7 @@ core-header-panel {
   -webkit-overflow-scrolling: touch;
 }
 core-toolbar {
-  background: #282828;
+  background: #3B78DC;
   color: white;
 }
 .search {
@@ -62,10 +62,13 @@ core-toolbar {
 
 /* Split page */
 .category-tree {
-  background-color: #A8A8A8;
+  .category-tree-scroll {
+    overflow-y: auto;
+    height: 100%;
+  }
 }
 .main-panel {
-  background-color: #C8C8C8;
+  background-color: #FFFFFF;
 }
 
 /* General */

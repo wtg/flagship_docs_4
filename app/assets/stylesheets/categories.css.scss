@@ -3,15 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .categories-nav {
   list-style-type: none;
-  padding-left: 15px;
+  padding-left: 0px;
   li {
     i {
+      padding: 2px;
       display: block-inline;
       &:hover {
         background-color: #F0F0F0;
       }
     } 
     a {
+      padding: 2px;
       display: block-inline;
       text-decoration: none;
       color: #000000;
@@ -34,15 +36,22 @@
 .grid-item {
   margin: 5px;
   padding-top: 5px;
-  border-radius: 4px;
-  box-shadow: 1px 1px 1px #282828;
-  background-color: white;
   text-align: center;
   position: relative;
   width: 175px;
   height: 175px;
+  overflow-y: hidden;
+  overflow-x: hidden;
   &:hover {
-    box-shadow: 2px 2px 2px #282828;
+    box-shadow: 1px 1px 1px #282828;
     background-color: #F0F0F0;
+    border-radius: 3px;
+  }
+  .grid-item-img {
+    display: block-inline;
+  }
+  .grid-item-name {
+    display: block-inline;
+    padding: 2px;
   }
 }

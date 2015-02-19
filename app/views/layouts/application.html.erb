@@ -11,20 +11,32 @@
   <body unresolved>
     <core-header-panel>
       <core-toolbar>
+        <!-- Toolbar content -->
         <%= render partial: "layouts/header" %>
         <%= render partial: "layouts/messages" %>
       </core-toolbar>
-      <core-animated-pages transitions="cross-fade-all hero-transition">
-        <core-drawer-panel horizontal layout>
-          <div drawer class="category-tree"> 
-            <%= render partial: "categories/categories_nav", locals: {categories:  Category.roots.sort_by {|c| c.name}} %>
+      <core-drawer-panel horizontal layout>
+        <div drawer class="category-tree"> 
+          <div class="category-tree-scroll">
+            <!-- Upload -->
+            <div class="upload-container">
+              <%= link_to new_document_path(category_id: params[:id]) do %>
+                <paper-button class="upload" role="button">
+                  <i class="fa fa-file"> Upload </i>
+                </paper-button>
+              <% end %>
+            </div>
+            <!-- Category Tree -->
+              <%= render partial: "categories/categories_nav", locals: {categories:  Category.roots.sort_by {|c| c.name}} %>
+            </div>
           </div>
-          <core-splitter direction="left"></core-splitter>
-          <div main class="main-panel">
-            <%= yield %>
-          </div>
-        </core-drawer-panel>
-      </core-animated-pages>
+        </div>
+        <core-splitter direction="left"></core-splitter>
+        <div main class="main-panel">
+          <!-- Page content -->
+          <%= yield %>
+        </div>
+      </core-drawer-panel>
     </core-header-panel>
   </body>
 </html>

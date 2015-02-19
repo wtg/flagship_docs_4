@@ -1,53 +1,35 @@
-<div class="panel panel-default">
-  <ol class="breadcrumb">
-    <li><%= link_to "Home", categories_path %></li>
-    <li class="active"><%= @user.name %></li>
+<h3> 
+  <%= @user.name %>
+  <% if @user.is_admin? %>
+     - Flagship Docs Admin 
+  <% end %>
+</h3>
 
-    <% if @user == current_user or current_user.is_admin? %>
-      <span class="pull-right"> <%= link_to "edit", edit_user_path(@user), :class => "btn btn-default btn-xs" %> 
-    <% end %>
-  </ol>
+<hr />
 
-  <div class="panel-body">
-    <div class="container">
-
-      <h3> 
-        <%= @user.name %>
-        <% if @user.is_admin? %>
-           - Flagship Docs Admin 
-        <% end %>
-      </h3>
-
-      <hr />
-
-      <div class="jumbotron">
-        <h4> Groups </h4>
-        <hr />
-        <div class="container">
-          <ul class="nav nav-pills">
-            <% @user.groups.uniq.each do |group| %>
-              <li class="active"> 
-                <%= link_to group do %> 
-                  <% if group.is_leader?(@user) %>
-                    <i class="fa fa-bolt"> </i>
-                  <% elsif group.is_member?(@user) %>
-                    <i class="fa fa-users"> </i>
-                  <% end %>
-                  <%= group.name %>
-                <% end %>
-              </li>
+<div class="jumbotron">
+  <h4> Groups </h4>
+  <hr />
+  <div class="container">
+    <ul class="nav nav-pills">
+      <% @user.groups.uniq.each do |group| %>
+        <li class="active"> 
+          <%= link_to group do %> 
+            <% if group.is_leader?(@user) %>
+              <i class="fa fa-bolt"> </i>
+            <% elsif group.is_member?(@user) %>
+              <i class="fa fa-users"> </i>
             <% end %>
-          </ul>
-        </div>
-      </div>
-      <br />
-
-      <div class="jumbotron">
-        <h4> Documents Uploaded </h4> 
-        <hr />
-        <div class="container"> <%= paginate @documents %> </div>
-        <%= render partial: "documents/document_list_item", locals: {docs: @documents} %>
-      </div>
-    </div>
+            <%= group.name %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
+<br />
+
+<h4> Documents Uploaded </h4> 
+<hr />
+<div class="container"> <%= paginate @documents %> </div>
+<%= render partial: "documents/list/document_list_item", locals: {docs: @documents} %>
