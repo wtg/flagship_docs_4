@@ -1,10 +1,12 @@
 <% if can_view_document(doc) %>
-  <section vertical layout>
-    <div class="grid-item">
-      <%= link_to doc do %>
+  <div class="grid-item">
+    <%= link_to doc, :class => "unstyled-link" do %>
+      <div class="grid-item-img">
         <%= image_tag "icons/#{document_icon(doc.current_revision.extension_type)}" %>
+      </div>
+      <div class="gird-item-name">
         <%= doc.title %>
-      <% end %>
-    </div>
-  </section>
+      </div>
+    <% end %>
+  </div>
 <% end %>

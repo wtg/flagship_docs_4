@@ -1,5 +1,5 @@
 <div class="categories-form">
-  <paper-input-decorator label="name" floatingLabel layout vertical> 
+  <paper-input-decorator label="name"> 
     <%= f.text_field :name %>
   </paper-input-decorator>
   <paper-input-decorator label="description">
@@ -8,7 +8,9 @@
 
   <paper-item>
     <%= f.label :owning_group %>
-    <%= f.select :group_id, @groups, {include_blank: true} %>
+    <div class="category-owner">
+      <%= f.select :group_id, @groups, {include_blank: true} %>
+    </div>
   </paper-item>
   
   <paper-item>

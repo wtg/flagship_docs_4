@@ -25,7 +25,10 @@
 }
 
 .categories-form {
-  margin: 25px;
+  margin: 0 0 0 25px;
+  .category-owner {
+    margin-left: 10px;
+  }
 }
 
 .grid-scroll {
@@ -54,4 +57,11 @@
     display: block-inline;
     padding: 2px;
   }
+}
+
+.list-item {
+  height: 80px;
+  border-bottom: 1px solid #ddd;
+  padding: 4px;
+  overflow: hidden;
 }
