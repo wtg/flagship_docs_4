@@ -1,17 +1,12 @@
-<table class="table table-list-items">
-  <% docs.each do |doc| %>
-    <% if !doc.current_revision.nil? %>
-      <tr class="list-item" href="<%= document_path(doc) %>"> 
-        <td> <%= image_tag "icons/#{small_document_icon(doc.current_revision.extension_type)}" %> <%= doc.title %> </td>
-        <td> <%= doc.description %> </td>
-        <td> 
-          <%= "Date: #{doc.current_revision.updated_at.to_date}" %>
-          <br/>
-          <% if !doc.user.name.nil? %>
-            <b> <%= "by: #{doc.user.name}" %> </b>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
+<% docs.each do |doc| %>
+  <% if !doc.current_revision.nil? %>
+    <div class="list-item">
+      <%= image_tag "icons/#{small_document_icon(doc.current_revision.extension_type)}" %>
+      <%= doc.title %>
+      <%= "Date: #{doc.current_revision.updated_at.to_date}" %>
+      <% if !doc.user.name.nil? %>
+        <%= "by: #{doc.user.name}" %> 
+      <% end %>
+    </div>
   <% end %>
-</table>
+<% end %>

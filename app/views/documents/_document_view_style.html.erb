@@ -9,11 +9,11 @@
 
 <h1 class="header"> 
   <% if !@category.parent.nil? %>
-    <%= link_to @category.parent, :class => "unstyled-link" do %>
+    <%= link_to @category.parent, :class => "unstyled-link prev-category" do %>
       <i class="fa fa-chevron-left"></i>
     <% end %>
   <% else %>
-    <%= link_to "/", :class => "unstyled-link" do %>
+    <%= link_to "/", :class => "unstyled-link prev-category" do %>
       <i class="fa fa-chevron-left"></i>
     <% end %>
   <% end %>
