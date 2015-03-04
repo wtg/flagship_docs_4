@@ -19,3 +19,43 @@
   <% end %>
   <%= @category.name %> 
 </h1>
+
+<% if !current_user.nil? and !@category.group.nil? %>
+  <% if current_user.is_admin? || @category.group.is_leader?(current_user) %>
+    <paper-button id="toggle-subcategory-form" class="new-subcategory">
+      New <i class="fa fa-folder"></i>
+    </paper-button>
+
+    <div class="dialog">
+      <paper-dialog id="subcategory-form">
+        <section vertical layout>
+          <p>
+            <%= render partial: "categories/subcategory_form", locals: {
+                       category: Category.new,
+                       category_url: create_subcategory_category_path(params[:id]),
+                       title: "New Subcategory" }
+            %>
+          </p>
+        </section>
+      </paper-dialog>
+    </div>
+
+    <paper-button id="toggle-edit-subcategory-form" class="new-subcategory">
+      Edit <i class="fa fa-folder"></i>
+    </paper-button>
+
+    <div class="dialog">
+      <paper-dialog id="edit-subcategory-form">
+        <section vertical layout>
+          <p>
+            <%= render partial: "categories/subcategory_form", locals: {
+                       category: @category,
+                       category_url: category_path(params[:id]),
+                       title: "Edit Subcategory" }
+            %>
+          </p>
+        </section>
+      </paper-dialog>
+    </div>
+  <% end %>
+<% end %>

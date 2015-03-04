@@ -4,7 +4,7 @@
       <h1 class="header">
         Featured Categories 
       </h1>
-      <div class="grid-view" flex horizontal wrap around-justified layout cross-fade>
+      <div class="grid-view" flex horizontal wrap layout cross-fade>
         <%= render partial: "categories/featured/featured_categories", locals: {featured: @featured} %>
       </div>
     <% end %>
@@ -12,7 +12,7 @@
     <h1 class="header">
       Browse Categories
     </h1> 
-    <div class="grid-view" flex horizontal wrap around-justified layout cross-fade>
+    <div class="grid-view" flex horizontal wrap layout cross-fade>
       <% @categories.each do |cat| %>
         <%= render partial: "categories/category_grid_item", locals: {subcategory: cat} %>
       <% end %>

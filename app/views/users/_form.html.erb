@@ -1,22 +1,19 @@
-<div class="container">
+<div class="edit-form">
   <%= form_for user do |f| %>
-    <div class="row">
-      <div class="col-sm-2">
-        <%= f.label :username %> <br>
-        <%= f.label :email %> <br>
-        <%= f.label :full_name %> <br>
-      </div>
-      <div class="col-md-6">
-        <%= f.label user.username %> <br>
-        <%= f.text_field :email %> <br>
-        <%= f.text_field :full_name %> <br>
-      </div>
-    </div>
-    <hr/>
-    <div class="row">
-      <div class="col-sm-2">
-        <%= f.submit "Update Profile", :class => "btn btn-sm btn-default" %>
-      </div> 
-    </div>
+
+    <paper-input-decorator floatingLabel label="username">
+      <%= f.label user.username %> 
+    </paper-input-decorator>
+
+    <paper-input-decorator floatingLabel label="email">
+      <%= f.text_field :email %> 
+    </paper-input-decorator>
+
+    <paper-input-decorator floatingLabel label="full name">
+      <%= f.text_field :full_name %> 
+    </paper-input-decorator>
+
+    <%= f.submit "Update Profile" %>
+
   <% end %>
 </div>

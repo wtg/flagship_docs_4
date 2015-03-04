@@ -21,4 +21,14 @@ $(document).ready(function($) {
     // redirect to document#show when clicking on list item
     window.document.location = $(this).attr("href");
   });
-});
+
+  // listen to click events to toggle subcategory form 
+  $("#toggle-subcategory-form").click(function() {
+    $("#subcategory-form").toggle();
+  });
+
+  // list to click events to toggle edit subcategory form
+  $("#toggle-edit-subcategory-form").click(function() {
+    $("#edit-subcategory-form").toggle();
+  });
+}); 

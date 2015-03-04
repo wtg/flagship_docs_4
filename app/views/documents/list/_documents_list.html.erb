@@ -1,22 +1,16 @@
 <section vertical layout>
   <div class="grid-scroll" fit>
     <%= render partial: "documents/document_view_style" %>
-    <div class="list-view" flex horizontal wrap layout cross-fade>
+    <div class="list-view">
       <div> <%= paginate @documents %> </div>
-      <% if @subcategories %>
+      <!-- Subcategory List -->
+      <% if !@subcategories.nil? %>
         <!-- Show a tile for each subcategory -->
-        <core-list>
-          <template repeat>
-            <%= render partial: "categories/category_list_item", locals: {subcategories: @subcategories} %>
-          </template>
-        </core-list>
+        <%= render partial: "categories/category_list_item", locals: {subcategories: @subcategories} %>
       <% end %>
-      <% if @documents %>
-        <core-list>
-          <template repeat>
-            <%= render partial: "documents/list/document_list_item", locals: {docs: @documents} %>
-          </template>
-        </core-list>
+      <!-- Document List -->
+      <% if !@documents.nil? %>
+        <%= render partial: "documents/list/document_list_item", locals: {docs: @documents} %>
       <% end %>
     </div>
   </div>

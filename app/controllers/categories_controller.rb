@@ -46,7 +46,6 @@ class CategoriesController < ApplicationController
   def new
     @category = Category.new
     # Get categories and groups for selection dropdowns
-    @categories = Category.all.map {|cat| [cat.name, cat.id]}
     @groups = Group.all.map {|group| [group.name, group.id]}
   end
 
