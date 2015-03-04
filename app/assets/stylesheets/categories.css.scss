@@ -4,12 +4,17 @@
 .categories-nav {
   list-style-type: none;
   padding-left: 0px;
+  paper-item {
+    &:hover {
+      background-color: #F0F0F0;
+    }
+  }
   li {
     i {
-      padding: 2px;
+      padding: 5px;
       display: block-inline;
       &:hover {
-        background-color: #F0F0F0;
+        background-color: #E0E0E0;
       }
     } 
     a {
@@ -17,9 +22,6 @@
       display: block-inline;
       text-decoration: none;
       color: #000000;
-      &:hover {
-        background-color: #F0F0F0;
-      }
     }
   }
 }
@@ -65,3 +67,53 @@
   padding: 4px;
   overflow: hidden;
 }
+
+.new-subcategory {
+  margin-left: 25px;
+  background-color: #4285f4;
+  color: white;
+  font-size: 12px;
+  i {
+    padding-left: 8px;
+  }
+}
+
+.subcategory-form {
+  margin: 0px 25px 0px 25px;
+  .header {
+    margin-left: 0px;
+    font-size: 24px;
+  }
+  core-item {
+    padding: 0px 50px 0px 50px;
+  }
+  core-label {
+    margin: 20px 0px 20px 0px;
+  }
+  paper-checkbox {
+    padding: 20px 20px 20px 0px;
+  }
+  paper-button {
+    margin-left: 0px;
+    background-color: #3B78DC;
+    button {
+      color: white;
+      padding: 0em;
+      background-color: transparent;
+      border-color: transparent;
+      border: 0;
+    }
+  }
+  .owning-group {
+    padding-top: 25px;
+    select {
+      margin-left: 15px;
+    }
+  }
+}
+
+.dialog {
+  z-index: 50;
+  position: relative;
+  display: inline-block;
+} 
