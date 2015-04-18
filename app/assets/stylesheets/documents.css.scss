@@ -56,3 +56,26 @@
 .prev-category {
   padding-right: 10px;
 }
+
+.create-revision, 
+.edit-document, 
+.document-delete-btn {
+  background-color: #4285f4;
+  color: white;
+  font-size: 12px;
+  i {
+    padding-left: 8px;
+  }
+}
+
+.document-delete-btn {
+  a {
+    color: white;
+  }
+}
+
+.document-details {
+  margin-left: 25px;
+  max-width: 50%;
+  padding-right: 35px;
+}
