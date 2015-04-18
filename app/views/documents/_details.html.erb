@@ -1,55 +1,83 @@
 <!-- Current document revision download and details -->
-<div class="row">
-  <div class="panel panel-default">
-    <ol class="breadcrumb">
-      <% @document.category.ancestors.reverse.each do |cat| %>
-        <li> <%= link_to cat.name, category_path(cat, view_style: params[:view_style]) %> </li>
+<div horizontal layout>
+  <div class="document-details">
+    <p> 
+      <%= link_to category_path(@document.category, view_style: params[:view_style]), :class => "unstyled-link prev-category" do %>
+        <i class="fa fa-chevron-left"></i>
       <% end %>
-      <li> <%= link_to @document.category.name, category_path(@document.category, view_style: params[:view_style]) %> </li>
-      <li class="active"> <%= @document.title %> </li>
-    </ol>
-    <div class="panel-body">
-      <div class="container">
-        <h2> <%= @document.title %> </h2>
-        <p> <%= @document.description%> </p>
-        <p> 
-          <!-- Download link -->
-          <%= link_to download_document_path, "data-no-turbolink" => true do %>
-            <%= image_tag "icons/#{document_icon(@document.current_revision.extension_type)}" %>
-            <% if @document.current_revision.file_upload? %> 
-              <h4> Download the latest revision here </h4>
-            <% elsif @document.current_revision.external_link? %>
-              <h4> Document from: <%= @document.current_revision.doc_link %> </h4>
-            <% end %>
-          <% end %>
-        </p>
-        <p>
-          <!-- Document details -->
-          <%= "From #{@document.user.name}" if !@document.user.nil? %> 
-          <%= "on #{@document.current_revision.updated_at.to_date}" %>
-          <br />
-          <%= "Download count: #{@document.total_downloads}" %>
-          <br />
-          <% if can_edit_document(@document) %>
-            <br />
-            <%= render partial: "edit_document" %> 
-          <% end %>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
+      <b> Back to <%= @document.category.name %> </b>
+    </p>
+    <h1 class="header">
+      <%= @document.title %> 
+    </h1>
+    <p> <%= @document.description%> </p>
+    <p> 
+      <!-- Download link -->
+      <%= link_to download_document_path, "data-no-turbolink" => true, :class =>"unstyled-link" do %>
+        <%= image_tag "icons/#{document_icon(@document.current_revision.extension_type)}" %>
+        <% if @document.current_revision.file_upload? %> 
+          <h4> Download the latest revision </h4>
+        <% elsif @document.current_revision.external_link? %>
+          <h4> Document from: <%= @document.current_revision.doc_link %> </h4>
+        <% end %>
+      <% end %>
+    </p>
+    <p>
+      <!-- Document details -->
+      <%= "From #{@document.user.name}" if !@document.user.nil? %> 
+      <%= "on #{@document.current_revision.updated_at.to_date}" %>
+      <br />
+      <%= "Download count: #{@document.total_downloads}" %>
+    </p>
+    <!-- Document edit -->
+    <% if can_edit_document(@document) %>
+      <paper-button id="toggle-doc-edit" class="edit-document">
+        Edit <i class="fa fa-pencil-square-o"></i>
+      </paper-button>
 
-<!-- Past Revisions -->
-<div class="row">
-  <div class="panel panel-default">
-    <ol class="breadcrumb">
-      <li> Document Revision History </li>
+      <div class="dialog">
+        <paper-dialog id="doc-edit">
+          <section vertical layout>
+            <p>
+              <%= render partial: "documents/edit_document" %>
+            </p>
+          </section>
+        </paper-dialog>
+      </div>
+
+      <paper-button class="document-delete-btn">
+        <%= link_to document_path(@document), 
+            method: :delete, data: {confirm: "Are you sure you want to delete this document?"},
+            :class => "unstyled-link" do %>
+        Delete <i class="fa fa-times-circle"></i>
+        <% end %>
+      </paper-button>
+    <% end %>
+  </div>
+
+  <core-splitter direction="left" minsize="128px" touch-action="none"></core-splitter>
+
+  <div flex class="revision-history">
+      <!-- Past Revisions -->
+      <h4> Document Revision History </h4>
+
+      <!-- Revision Upload -->
       <% if can_revise_document(@document) %>
-        <div class="pull-right"><%= render partial: "revisions/upload.html.erb" %></div>
+        <paper-button id="toggle-rev-create" class="create-revision">
+          New <i class="fa fa-file-o"></i>
+        </paper-button>
+
+        <div class="dialog">
+          <paper-dialog id="rev-create">
+            <section vertical layout>
+              <p>
+                <%= render partial: "revisions/upload" %>
+              </p>
+            </section>
+          </paper-dialog>
+        </div>
       <% end %>
-    </ol>
-    <div class="panel-body">
+
       <% if @document.revisions.length > 1 %>
         <% @document.revisions.order("position asc").each do |revision| %>
           <% if revision.position != 0 %>
@@ -72,6 +100,5 @@
       <% else %>
         <p> This document has not been revised yet. </p>
       <% end %>
-    </div>
   </div>
 </div>

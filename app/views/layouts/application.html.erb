@@ -13,10 +13,9 @@
       <core-toolbar>
         <!-- Toolbar content -->
         <%= render partial: "layouts/header" %>
-        <%= render partial: "layouts/messages" %>
       </core-toolbar>
       <core-drawer-panel horizontal layout>
-        <div drawer class="category-tree"> 
+        <div drawer class="category-tree">
           <div class="category-tree-scroll">
             <!-- Upload -->
             <div class="upload-container">
@@ -33,6 +32,7 @@
         </div>
         <core-splitter direction="left"></core-splitter>
         <div main class="main-panel">
+          <%= render partial: "layouts/messages" %>
           <!-- Page content -->
           <%= yield %>
         </div>

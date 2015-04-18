@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.order("username ASC").all.page(params[:page])
+    @users_json = @users.to_json
   end
 
   def show
