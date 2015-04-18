@@ -1,9 +1,9 @@
 <paper-input-decorator label="title">
-  <%= f.text_field :title %>
+  <%= f.text_field :title, :maxlength => 70 %>
 </paper-input-decorator>
 
 <paper-input-decorator label="description">
-  <%= f.text_field :description %>
+  <%= f.text_field :description, :maxlength => 140 %>
 </paper-input-decorator>
 
 <core-label horizontal layout>

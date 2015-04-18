@@ -4,8 +4,10 @@
       <h1 class="header">
         Featured Categories 
       </h1>
-      <div class="grid-view" flex horizontal wrap layout cross-fade>
-        <%= render partial: "categories/featured/featured_categories", locals: {featured: @featured} %>
+      <div class="featured">
+        <div class="grid-view" flex horizontal wrap layout cross-fade>
+          <%= render partial: "categories/featured/featured_categories", locals: {featured: @featured} %>
+        </div>
       </div>
     <% end %>
 

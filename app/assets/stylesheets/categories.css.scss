@@ -61,13 +61,6 @@
   }
 }
 
-.list-item {
-  height: 80px;
-  border-bottom: 1px solid #ddd;
-  padding: 4px;
-  overflow: hidden;
-}
-
 .new-subcategory {
   margin-left: 25px;
   background-color: #4285f4;
@@ -117,3 +110,16 @@
   position: relative;
   display: inline-block;
 } 
+
+.category-list-item {
+  margin-left: 15px;
+  &:hover {
+    box-shadow: 1px 1px 1px #282828;
+    background-color: #F0F0F0;
+    border-radius: 3px;
+  }
+}
+
+.featured {
+  margin-left: 45px;
+}

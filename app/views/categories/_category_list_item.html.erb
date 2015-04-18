@@ -1,8 +1,8 @@
 <% subcategories.each do |subcategory| %>
   <% if category_viewable?(subcategory) %>
-    <div class="list-item" href="<%= category_path(subcategory, view_style: "list") %>">
+    <div href="<%= category_path(subcategory, view_style: "list") %>" horizontal layout center class="category-list-item">
       <%= image_tag "icons/folders/folder_jeans.png", width: "50px", height: "50px" %>
-      <%= subcategory.name %> 
+      <%= subcategory.name %>
     </div>
   <% end %>
 <% end %>
