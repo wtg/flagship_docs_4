@@ -1,12 +1,10 @@
 <% featured.each do |category, docs| %>
   <% if !docs.empty? and !category.nil?%>
-    <div class="container">
-      <% if category.is_root? %>
-        <h4> <%= category.name %> </h4>
-      <% else %>
-        <h4> <%= "#{category.root.name} - #{category.name}" %> </h4> 
-      <% end %>
-      <%= render partial: "documents/list/document_list_item", locals: {docs: docs} %>
-    </div>
+    <% if category.is_root? %>
+      <h4> <%= category.name %> </h4>
+    <% else %>
+      <h4> <%= "#{category.root.name} - #{category.name}" %> </h4> 
+    <% end %>
+    <%= render partial: "documents/list/document_list_item", locals: {docs: docs} %>
   <% end %>
 <% end %>
