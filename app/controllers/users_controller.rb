@@ -14,6 +14,12 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find_by_id(params[:id])
+    # users can only edit their own pages unless an admin
+    if current_user != @user
+      unless current_user.is_admin?
+        redirect_to "/"
+      end
+    end
   end
 
   def update
