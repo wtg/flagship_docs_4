@@ -5,3 +5,34 @@
 .new-form {
   margin-left: 25px;
 }
+
+.group-profile {
+  margin-left: 25px;
+  h1 {
+    font-size: 24px;
+  }
+  .group-page, .group-leaders,
+  .group-members {
+    margin-left: 20px;
+  }
+}
+
+.edit-group-btn {
+  background-color: #4285f4;
+  color: white;
+  font-size: 12px;
+  i {
+    padding-left: 8px;
+  }
+}
+
+.group-edit {
+  h1 {
+    font-size: 24px;
+  }
+  margin-left: 25px;
+  .add-leader, .add-member {
+    font-weight: normal;
+    font-size: 16px;
+  }
+}

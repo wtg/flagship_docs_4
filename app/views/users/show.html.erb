@@ -1,35 +1,30 @@
-<h3> 
-  <%= @user.name %>
-  <% if @user.is_admin? %>
-     - Flagship Docs Admin 
-  <% end %>
-</h3>
+<div class="profile">  
+  <h1> 
+    <%= @user.name %>
+    <% if @user.is_admin? %>
+       - Flagship Docs Admin 
+    <% end %>
+  </h1>
 
-<hr />
-
-<div class="jumbotron">
-  <h4> Groups </h4>
-  <hr />
-  <div class="container">
-    <ul class="nav nav-pills">
-      <% @user.groups.uniq.each do |group| %>
-        <li class="active"> 
-          <%= link_to group do %> 
-            <% if group.is_leader?(@user) %>
-              <i class="fa fa-bolt"> </i>
-            <% elsif group.is_member?(@user) %>
-              <i class="fa fa-users"> </i>
-            <% end %>
-            <%= group.name %>
+  <div class="profile-groups">
+    <h4> Groups </h4>
+    <div class="user-groups">
+      <% @user.groups.each do |group| %>
+        <%= link_to group, :class => "unstyled-link" do %> 
+          <% if group.is_leader?(@user) %>
+            <i class="fa fa-bolt"> </i>
+          <% elsif group.is_member?(@user) %>
+            <i class="fa fa-users"> </i>
           <% end %>
-        </li>
+          <%= group.name %> 
+        <% end %>
       <% end %>
-    </ul>
+    </div>
+  </div>
+
+  <div class="profile-documents">
+    <h4> Documents Uploaded </h4> 
+    <%= paginate @documents %>
+    <%= render partial: "documents/list/document_list_item", locals: {docs: @documents} %>
   </div>
 </div>
-<br />
-
-<h4> Documents Uploaded </h4> 
-<hr />
-<div class="container"> <%= paginate @documents %> </div>
-<%= render partial: "documents/list/document_list_item", locals: {docs: @documents} %>

@@ -55,5 +55,5 @@ function loadCategoryTree() {
 }
 
 $(document).ready(function(){ 
-  loadCategoryTree();
+  //loadCategoryTree();
 });

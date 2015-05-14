@@ -1,78 +1,47 @@
-<div class="panel panel-default">
-  <ol class="breadcrumb">
-    <li><%= link_to "Home", categories_path %></li>
-    <li class="active"><%= @group.name %></li>
-    <% if admin? or @group.is_leader?(current_user) %>
-      <div class="pull-right"><%= link_to "Edit", edit_group_path(@group), :class => "btn btn-primary btn-xs" %></div>
+<div class="group-profile">
+  <h1> <%= "#{@group.name} Group" %> </h1>
+
+  <div class="group-page">
+    <% if current_user.is_admin? or current_user.leader_of(@group.id) %>
+      <%= link_to edit_group_path(@group) do %>
+        <paper-button href="/" class="edit-group-btn">
+          Edit <i class="fa fa-folder"></i>
+        </paper-button>
+      <% end %>
     <% end %>
-  </ol>
 
-  <div class="panel-body">
-    <div class="container">
-      <h3> 
-        <%= @group.name %>
-      </h3>
-      <hr />
+    <% if !@categories.empty? %>
+    <%= paginate @categories %>
+      <h4> Categories </h4>
+      <%= render partial: "categories/category_list_item", locals: {subcategories: @categories} %>
+    <% end %>
 
-      <% if !@categories.empty? %>
-      <%= paginate @categories %>
-      <div class="jumbotron">
-        <h4> Categories </h4>
-        <hr />
-        <div class="container">
-          <ul class="nav nav-pills">
-          <% @categories.each do |category| %>
-            <li> 
-              <%= link_to category do %>
-                <%= image_tag "icons/icon_folder_50.png" %> <%= category.name %>
-              <% end %>
-            </li>
-          <% end %>
-          </ul>
-        </div>
+    <% if !@leaders.empty? %>
+    <%= paginate @leaders %>
+      <h4> Leaders </h4>
+      <div class="group-leaders">
+        <% @leaders.each do |leader| %>
+        <i class="fa fa-user"></i>
+          <%= link_to leader.user.name, leader.user, :class => "unstyled-link" %>
+        <% end %>
       </div>
-      <% end %>
+    <% end %>
 
-      <% if !@leaders.empty? %>
-      <%= paginate @leaders %>
-      <div class="jumbotron">
-        <h4> Leaders </h4>
-        <hr />
-        <div class="container">
-          <ul class="nav nav-pills">
-          <% @leaders.each do |leader| %>
-            <li>
-              <%= link_to leader.user.name, leader.user %>
-            </li>
-          <% end %>
-          </ul>
-        </div>
+    <% if !@members.empty? %>
+    <%= paginate @members %>
+      <h4> Members </h4>
+      <div class="group-members">
+        <% @members.each do |member| %>
+          <i class="fa fa-user"></i>
+          <%= link_to member.user.name, member.user, :class => "unstyled-link" %>
+        <% end %>
       </div>
-      <% end %>
+    <% end %>
 
-      <% if !@members.empty? %>
-      <%= paginate @members %>
-      <div class="jumbotron">
-        <h4> Members </h4>
-        <hr />
-        <div class="container">
-          <ul class="nav nav-pills">
-          <% @members.each do |member| %>
-            <li>
-              <%= link_to member.user.name, member.user %>
-            </li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <% if !@documents. empty? %>
-        <%= paginate @documents %>
-        <br />
-        <h4> Documents Uploaded </h4>
-        <%= render partial: "documents/document_list_item", locals: {docs: @documents} %>
-      <% end %>
-    </div>
+    <% if !@documents. empty? %>
+      <%= paginate @documents %>
+      <h4> Documents Uploaded </h4>
+      <%= render partial: "documents/list/document_list_item", locals: {docs: @documents} %>
+    <% end %>
   </div>
-
 </div>

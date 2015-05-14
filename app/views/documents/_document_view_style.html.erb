@@ -9,7 +9,7 @@
 
 <h1 class="header"> 
   <% if !@category.parent.nil? %>
-    <%= link_to @category.parent, :class => "unstyled-link prev-category" do %>
+    <%= link_to category_path(@category.parent, view_style: params[:view_style]), :class => "unstyled-link prev-category" do %>
       <i class="fa fa-chevron-left"></i>
     <% end %>
   <% else %>
@@ -21,7 +21,7 @@
 </h1>
 
 <% if !current_user.nil? and !@category.group.nil? %>
-  <% if current_user.is_admin? || @category.group.is_leader?(current_user) %>
+  <% if current_user.is_admin? or current_user.leader_of(@category.group.id) %>
     <paper-button id="toggle-subcategory-form" class="new-subcategory">
       New <i class="fa fa-folder"></i>
     </paper-button>

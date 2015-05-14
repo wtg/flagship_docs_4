@@ -5,3 +5,19 @@
 .edit-form {
   margin-left: 25px;
 }
+
+.profile {
+  margin-left: 25px;
+  h1 {
+    font-size: 24px;
+  }
+  .profile-groups {
+    margin-left: 15px;
+    .user-groups {
+      margin-left: 15px;
+    }
+  }
+  .profile-documents {
+    margin-left: 15px;
+  }
+}

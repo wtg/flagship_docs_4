@@ -1,32 +1,31 @@
-<%= form_for @group do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, :class => "form-control", placeholder: @group.name %>
-  <br>
-  <%= f.submit "save name", :class => "btn btn-default btn-xs" %>
-<% end %>
+<div class="group-edit">
+  <h1> <%= "Editing #{@group.name} Group" %> </h1>
 
-<h3> Categories </h3>
-<%= @group.category_names %>
+  <%= form_for @group do |f| %>
+    <paper-input-decorator label="name">
+      <%= f.text_field :name, :class => "form-control", placeholder: @group.name %>
+    </paper-input-decorator>
+    <%= f.submit "update name" %>
+  <% end %>
 
-<h3> Group Leaders </h3>
-<%= @group.leader_names %>
-<hr />
+  <h3> 
+    Group Leaders: 
+    <%= form_for :membership, url: add_member_group_path(group_id: params[:id]) do |l| %>
+      <span class="add-leader"> <%= l.label :add_leader %> </span>
+      <%= l.select :user_id, User.all.collect { |u| [u.username, u.id] }, {include_blank: true} %>
+      <%= l.hidden_field :level, value: Membership::LEVELS[:leader] %>
+      <%= l.submit "add" %>
+    <% end %>
+  </h3>
+  <%= @group.leader_names %>
 
-<%= form_for :membership, url: add_member_group_path(group_id: params[:id]) do |l| %>
-  <%= l.label :add_leader %>
-  <%= l.select :user_id, User.all.collect { |u| [u.username, u.id] }, {include_blank: true} %>
-  <%= l.hidden_field :level, value: Membership::LEVELS[:leader] %>
-  <%= l.submit "add", :class => "btn btn-default btn-xs" %>
-<% end %>
-<hr />
-
-<h3> Group Members </h3>
-<%= @group.member_names %>
-<hr />
-
-<%= form_for :membership, url: add_member_group_path(group_id: params[:id]) do |m| %>
-  <%= m.label :add_member %>
-  <%= m.select :user_id, User.all.collect { |u| [u.username, u.id]}, {include_blank: true} %>
-  <%= m.hidden_field :level, value: Membership::LEVELS[:regular] %>
-  <%= m.submit "add", :class => "btn btn-default btn-xs" %>
-<% end %>
+  <h3> Group Members:
+    <%= form_for :membership, url: add_member_group_path(group_id: params[:id]) do |m| %>
+      <span class="add-member"> <%= m.label :add_member %> </span>
+      <%= m.select :user_id, User.all.collect { |u| [u.username, u.id]}, {include_blank: true} %>
+      <%= m.hidden_field :level, value: Membership::LEVELS[:regular] %>
+      <%= m.submit "add", :class => "btn btn-default btn-xs" %>
+    <% end %>
+  </h3>
+  <%= @group.member_names %>
+</div>
