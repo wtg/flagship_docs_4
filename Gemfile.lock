@@ -100,6 +100,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
+      json (~> 1.4)
     ref (1.0.5)
     rsolr (1.0.12)
       builder (>= 2.1.2)
