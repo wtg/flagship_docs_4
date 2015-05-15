@@ -1,5 +1,5 @@
 <section vertical layout>
-  <div class="grid-scroll" fit>
+  <div class="grid-scroll">
     <% if !@featured.nil? and !@featured.values.all? {|docs| docs.empty?} %>
       <h1 class="header">
         Featured Categories 
@@ -12,7 +12,7 @@
     <h1 class="header">
       Browse Categories
     </h1> 
-    <div class="grid-view" flex horizontal wrap layout cross-fade>
+    <div class="grid-view" flex horizontal wrap layout>
       <% @categories.each do |cat| %>
         <%= render partial: "categories/category_grid_item", locals: {subcategory: cat} %>
       <% end %>
