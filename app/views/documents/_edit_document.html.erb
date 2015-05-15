@@ -2,27 +2,25 @@
 <% if !current_user.nil? %>
   <!-- Check if user has permissions to upload -->
   <% if can_upload_documents(@category) %>
-    <%= form_for :document, html: { multipart: true }, url: document_path(@document), method: :patch do |f| %>
-      <%= render partial: "documents/form", locals: {f: f, include_revision: false, document: @document} %>
-    <% end %>
-  <% else %>
-    <div class="panel-heading">
-      Sorry, you do not have permission to edit this document.
+    <div class="upload-form">
+      <%= form_for :document, html: { multipart: true }, url: document_path(@document), method: :patch do |f| %>
+        <%= render partial: "documents/form", locals: {f: f, include_revision: false, document: @document} %>
+      <% end %>
     </div>
+  <% else %>
+    <p> Sorry, you do not have permission to edit this document. </p>
   <% end %>
 <% elsif current_user.nil? %>
-  <div class="panel-heading">
+  <p>
     Please
     <%= link_to "sign in", "/auth/cas" %>
     to upload and edit documents!
-  </div>
+  </p>
 <% elsif @permitted_categories.nil? %>
-  <div class="panel-heading">
-    You do not have permission to edit this document.
-  </div>
+  <p> You do not have permission to edit this document. </p>
 <% else %>
-  <div class="panel-heaing">
+  <p>
     An unknown error has occured. Please contact a site administrator
     for more details.
-  </div>
+  </p>
 <% end %>

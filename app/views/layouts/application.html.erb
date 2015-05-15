@@ -9,6 +9,8 @@
     <%= csrf_meta_tags %>
   </head>
   <body unresolved>
+    <!-- Flash Messages -->
+    <%= render partial: "layouts/messages" %>
     <core-header-panel>
       <core-toolbar>
         <!-- Toolbar content -->
@@ -32,7 +34,6 @@
         </div>
         <core-splitter direction="left"></core-splitter>
         <div main class="main-panel">
-          <%= render partial: "layouts/messages" %>
           <!-- Page content -->
           <%= yield %>
         </div>
