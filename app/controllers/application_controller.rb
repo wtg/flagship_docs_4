@@ -14,5 +14,11 @@ class ApplicationController < ActionController::Base
     @permitted_categories = upload_permitted_categories
   end
 =end
+
+  def user_admin?
+    if current_user.nil? or !current_user.is_admin
+      redirect_to "/"
+    end 
+  end
   
 end 

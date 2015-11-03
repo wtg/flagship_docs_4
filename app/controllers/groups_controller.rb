@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 
-  before_filter :admin?, except: [:show]
+  before_filter :user_admin?, except: [:show]
 
   def index
     @groups = Group.all.page(params[:page])

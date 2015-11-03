@@ -32,7 +32,7 @@
           <p>
             <%= render partial: "categories/subcategory_form", locals: {
                        category: Category.new,
-                       category_url: create_subcategory_category_path(params[:id]),
+                       category_url: create_subcategory_category_path(params[:category_id]),
                        title: "New Subcategory" }
             %>
           </p>
@@ -50,7 +50,7 @@
           <p>
             <%= render partial: "categories/subcategory_form", locals: {
                        category: @category,
-                       category_url: category_path(params[:id]),
+                       category_url: category_path(params[:category_id]),
                        title: "Edit Subcategory" }
             %>
           </p>

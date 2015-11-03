@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
 
-  before_filter :admin?, except: [:index, :show, :create_subcategory]
+  before_filter :user_admin?, except: [:index, :show, :create_subcategory]
 
   # GET /categories
   def index
@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
   # GET /categories/:id
   def show
     # Get category and its subcategories
-    @category = Category.find params[:id]
+    @category = Category.find params[:category_id]
     @subcategories = @category.children.sort_by {|c| c.name}
     @groups = Group.order(:name).all.map {|group| [group.name, group.id]}
     
@@ -61,7 +61,7 @@ class CategoriesController < ApplicationController
 
   def create_subcategory
     # Get parent category the new subcategory will be under
-    @parent_category = Category.find_by_id(params[:id])
+    @parent_category = Category.find_by_id(params[:category_id])
 
     # Check hidden field value for invalid parent category
     if @parent_category.nil? 
@@ -86,7 +86,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find_by_id(params[:id])
+    @category = Category.find_by_id(params[:category_id])
     # Get categories and groups for selection dropdowns
     @categories = Category.all.map {|cat| [cat.name, cat.id]}
     @categories.delete([@category.name, @category.id])
@@ -94,13 +94,13 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find_by_id(params[:id])
+    @category = Category.find_by_id(params[:category_id])
     @category.update_attributes(category_params)
     redirect_to edit_category_path(@category)
   end
 
   def destroy
-    @category = Category.find_by_id(params[:id]).destroy
+    @category = Category.find_by_id(params[:category_id]).destroy
     redirect_to manage_categories_path
   end
 
@@ -109,7 +109,7 @@ class CategoriesController < ApplicationController
   end
 
   def subcategories
-    @subcategories = Category.find(params[:id]).children.sort_by{|c| c.name}
+    @subcategories = Category.find(params[:category_id]).children.sort_by{|c| c.name}
     @subcategories = @subcategories.map{|c| c.subcategories_json}
     render json: @subcategories 
   end

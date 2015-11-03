@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     end
   end 
 
-  resources :categories do
+  resources :categories, param: :category_id do
     member do
       get :subcategories
       post :create_subcategory

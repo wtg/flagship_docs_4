@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :admin?, except: [:show, :edit, :manage_groups]
+  before_filter :user_admin?, except: [:show, :edit, :manage_groups]
 
   def index
     @users = User.order("username ASC").all.page(params[:page])

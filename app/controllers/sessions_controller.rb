@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
 
   def new
     cas_hash = request.env["omniauth.auth"]
+    cas_hash[:uid].downcase!
 
     if User.find_by_username(cas_hash[:uid]).nil?
       user = User.new(username: cas_hash[:uid], email: cas_hash[:uid] + "@rpi.edu", is_admin: 0, full_name: cas_hash[:uid])
