@@ -5,7 +5,7 @@
       <div> <%= image_tag "icons/#{small_document_icon(doc.current_revision.extension_type)}" %> </div>
       <div class="document-title"> <%= doc.title %> </div>
       <div class="upload-details"> <%= "Uploaded on #{doc.current_revision.updated_at.to_date}" %> <br />
-      <% if !doc.user.name.nil? %>
+      <% if !doc.user.nil? and !doc.user.name.nil? %>
         <%= "by #{doc.user.name}" %> 
       <% end %> </div>
     </div>
