@@ -5,7 +5,7 @@
     <%= favicon_link_tag 'favicon.ico' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
-    <%= html_import_tag "application", "data-turbolinks-track" => false %>
+    <%= html_import_tag 'application'%>
     <%= csrf_meta_tags %>
   </head>
   <body unresolved>
@@ -36,6 +36,7 @@
         <div main class="main-panel">
           <!-- Page content -->
           <%= yield %>
+            <paper-button raised>raised</paper-button>
         </div>
       </core-drawer-panel>
     </core-header-panel>

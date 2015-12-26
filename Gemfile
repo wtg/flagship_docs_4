@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0'
+gem 'rails', '4.2.5'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use omniauth-cas for CAS Authentication
@@ -14,7 +14,7 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'font-awesome-rails'
 
 # Use Polymer Web Components
-gem 'emcee'
+gem 'polymer-rails', '~> 1.0'
 
 # Use kaminari for pagination
 gem 'kaminari'

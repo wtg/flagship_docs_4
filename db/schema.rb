@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20141009171839) do
 
-  create_table "categories", force: true do |t|
+  create_table "categories", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20141009171839) do
     t.boolean  "is_featured"
   end
 
-  create_table "documents", force: true do |t|
+  create_table "documents", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
@@ -36,13 +36,13 @@ ActiveRecord::Schema.define(version: 20141009171839) do
     t.integer  "user_id"
   end
 
-  create_table "groups", force: true do |t|
+  create_table "groups", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
   end
 
-  create_table "memberships", force: true do |t|
+  create_table "memberships", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "group_id"
@@ -50,22 +50,22 @@ ActiveRecord::Schema.define(version: 20141009171839) do
     t.integer  "level"
   end
 
-  create_table "revisions", force: true do |t|
+  create_table "revisions", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "document_id"
     t.integer  "user_id"
     t.integer  "position"
-    t.integer  "download_count",                 default: 0
+    t.integer  "download_count", default: 0
     t.string   "file_name"
     t.string   "file_type"
     t.integer  "file_size"
-    t.binary   "file_data",      limit: 4194304
+    t.binary   "file_data"
     t.text     "search_text"
     t.string   "doc_link"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
